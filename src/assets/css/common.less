@@ -1,0 +1,299 @@
+@import "./antdFix";
+
+html, body, #app {
+  overflow: hidden;
+
+}
+
+* {
+  user-select: none;
+}
+
+.user-select {
+  user-select: text;
+}
+
+.line-no-warp {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cur-pointer {
+  cursor: pointer;
+}
+
+.cur-pointer.hover:hover {
+  opacity: .8;
+}
+
+.mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: @modal-mask-bg;
+  z-index: 99;
+}
+
+#app {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  width: 100%;
+  height: 100%;
+
+  .content {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    font-size: @font-size-base;
+  }
+}
+
+.flex {
+  display: flex;
+}
+
+.flex.no-shrink{
+  &>*{
+    flex-shrink:0;
+  }
+}
+
+.flex:not(.jc-fe) {
+
+  & > .al-end {
+    margin-left: auto;
+  }
+}
+
+.flex.jc-fe {
+  & > .al-end {
+    margin-right: auto;
+  }
+}
+
+
+//布局
+@flex-direction: column, row;
+@align-items: flex-start, flex-end, center;
+@align-items-index: fs, fe, ct;
+@justify-content: flex-start, flex-end, center, space-around, space-between;
+@justify-content-index: fs, fe, ct, sa, sb;
+
+each(@flex-direction, {
+  .flex.@{value} {
+    flex-direction: @value;
+  }
+})
+
+each(@align-items-index, {
+  .flex.al-@{value} {
+    align-items: extract(@align-items, @index);
+  }
+})
+
+each(@justify-content-index, {
+  .flex.jc-@{value} {
+    justify-content: extract(@justify-content, @index);
+  }
+})
+
+//边距 TODO 测试下.mg-dir(@i) when (@i <=length(@mg-direction-index)) { 的<=
+@mg-direction: left, right, top, bottom;
+@mg-direction-index: l, r, t, b;
+@mg-size: @padding-max, @padding-lg, @padding-md, @padding-sm, @padding-xs, @padding-min;
+
+.mg-dir(@i) when (@i <=length(@mg-direction-index)) {
+  .mg-size(@j) when (@j <=length(@common-size-index)) {
+    @direction-index-value: extract(@mg-direction-index, @i + 1);
+    @size-index-value: extract(@common-size-index, @j + 1);
+    @name:@{direction-index-value}-@{size-index-value};
+
+    .content(@dir,@size) when (@dir=l) {
+      margin-left: @size;
+    }
+    .content(@dir,@size) when (@dir=r) {
+      margin-right: @size;
+    }
+    .content(@dir,@size) when (@dir=b) {
+      margin-bottom: @size;
+    }
+    .content(@dir,@size) when (@dir=t) {
+      margin-top: @size;
+    }
+    .mg-@{name} {
+      .content(@direction-index-value, extract(@mg-size, @j));
+    }
+    .mg-size((@j + 1));
+  }
+  .mg-size(0);
+  .mg-dir((@i + 1));
+}
+
+.mg-dir(0);
+
+.mg-erase{
+  margin: 0;
+}
+
+.scroll {
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+}
+
+.scroll.x {
+  overflow-y: hidden !important;
+  overflow-x: auto !important;
+}
+
+.scroll.hover-type {
+  overflow-y: hidden !important;
+}
+
+.scroll.hover-type:hover {
+  overflow-y: auto !important;
+}
+
+.scroll::-webkit-scrollbar {
+  width: @padding-xs/2;
+  height: 1px;
+}
+
+.scroll::-webkit-scrollbar-thumb {
+  background: @color-bg-main;
+}
+
+
+.scroll.x::-webkit-scrollbar {
+  width: 1px;
+  height: @padding-xs/2;
+}
+
+//文本
+.text-h1 {
+  font-size: @heading-1-size;
+  font-weight: bold;
+}
+
+.text-h2 {
+  font-size: @heading-2-size;
+  font-weight: 900;
+}
+
+.text-h3 {
+  font-size: @heading-3-size;
+  font-weight: 800;
+}
+
+.text-h4 {
+  font-size: @heading-4-size;
+  font-weight: 700;
+}
+
+.text-bd{
+  font-weight: bold;
+}
+
+.text-color-lk{
+  color: @primary-color;
+}
+
+.text-color-sub{
+  color: @text-color-secondary;
+}
+
+.text-sm{
+  font-size: 80%;
+}
+
+//btn
+.btn-group {
+  button:not(:first-child) {
+    margin-left: @padding-sm;
+  }
+}
+
+input:focus, input:focus-visible {
+  border: none;
+}
+
+input.hollow {
+  border: none;
+  border-bottom: @border-base;
+  height: 22px;
+  outline: none;
+}
+
+input.max, select.max {
+  width: 220px;
+}
+
+input.lg, select.lg {
+  width: 120px;
+}
+
+input.md, select.md {
+  width: 80px;
+}
+
+.width-max{
+  width: 12*@padding-lg;
+}
+
+.width-lg{
+  width: 10*@padding-lg;
+}
+
+.width-md{
+  width: 8*@padding-lg;
+}
+
+.width-sm{
+  width: 6*@padding-lg;
+}
+
+.width-min{
+  width: 4*@padding-lg;
+}
+
+
+//图片
+.img-base {
+  border: 0.5px solid #efefef;
+  border-radius: 5px;
+}
+
+.img-size-lg {
+  width: 4*@padding-lg;
+  height: 4*@padding-lg;
+}
+
+.img-carousel {
+  width: 12*@padding-lg;
+  height: 4*@padding-lg;
+}
+
+.img-size-base {
+  width: 2*@padding-lg;
+  height: 2*@padding-lg;
+}
+
+.img-size-sm {
+  width: @padding-lg;
+  height: @padding-lg;
+}
+
+.img-size-auto {
+  width: 100%;
+  height: auto;
+}
+
+.loading{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
