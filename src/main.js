@@ -9,6 +9,9 @@ import '@/assets/css/theme_vars/index.scss'
     Vue.use(fo)
 })
 
+import mixin from '@/mixin/global/mixin'
+Vue.mixin(mixin)
+
 
 Vue.config.productionTip = false
 

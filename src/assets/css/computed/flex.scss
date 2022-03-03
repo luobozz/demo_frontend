@@ -1,0 +1,49 @@
+.flex {
+  display: flex;
+}
+
+.flex.no-shrink {
+  & > * {
+    flex-shrink: 0;
+  }
+}
+
+.flex:not(.jc-fe) {
+  & > .al-end {
+    margin-left: auto;
+  }
+}
+
+.flex.jc-fe {
+  & > .al-end {
+    margin-right: auto;
+  }
+}
+
+$--flex-direction: column, row;
+$--align-items: flex-start, flex-end, center;
+$--align-items-index: fs, fe, ct;
+$--justify-content: flex-start, flex-end, center, space-around, space-between;
+$--justify-content-index: fs, fe, ct, sa, sb;
+
+@each $value in $--flex-direction {
+  .flex.#{$value} {
+    flex-direction: #{$value};
+  }
+}
+
+@for $j from 1 through length($--align-items-index) {
+  $item-name: nth($--align-items-index, $j);
+  $item: nth($--align-items, $j);
+  .flex.al-#{$item-name} {
+    align-items: $item;
+  }
+}
+
+@for $j from 1 through length($--justify-content-index) {
+  $item-name: nth($--justify-content-index, $j);
+  $item: nth($--justify-content, $j);
+  .flex.jc-#{$item-name} {
+    justify-content: $item;
+  }
+}
