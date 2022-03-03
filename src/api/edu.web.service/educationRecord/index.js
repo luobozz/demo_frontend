@@ -1,4 +1,0 @@
-const header = {}
-export default {
-
-}
