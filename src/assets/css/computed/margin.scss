@@ -1,0 +1,5 @@
+@each $size in $--common-size-index {
+  .mg-#{$size}{
+    color: red;
+  }
+}
