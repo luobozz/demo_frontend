@@ -18,10 +18,9 @@
             <div class="title mg-b-min">密码</div>
             <input class="password" type="password"/>
           </div>
-          <div :class="{'remember-password cur-pointer flex al-ct  mg-b-max':true,'keep-pwd':this.pwdKeeper}"
-               @click="keepPwd">
-            <lb-icon class="mg-r-xs" :type="!this.pwdKeeper?'fa-square-o':'fa-check-square-o'"/>
-            <span>记住我</span>
+          <div :class="{'remember-password cur-pointer flex al-ct  mg-b-max':true,'keep-pwd':pwdKeeper}">
+            <el-checkbox class="mg-r-xs" v-model="pwdKeeper"></el-checkbox>
+            <span @click="keepPwd">记住我</span>
           </div>
           <el-button class="login-btn mg-b-lg" type="primary" round>登录</el-button>
         </div>

@@ -17,4 +17,10 @@ export const constantRouter = [
         name: 'login',
         component: () => import(/* webpackChunkName: "about" */ '../views/login/login.vue'),
     },
+    {
+        path: '/home',
+        name: 'home',
+        component: () => import('../views/home/home.vue'),
+        children: []
+    }
 ]
