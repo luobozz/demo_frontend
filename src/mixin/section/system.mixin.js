@@ -1,6 +1,9 @@
 const mixin = {
     data() {
         return {
+            system: {
+                name: process.env.VUE_APP_TITLE,
+            },
         }
     },
 
@@ -8,8 +11,7 @@ const mixin = {
     },
     created() {
     },
-    computed: {
-    },
+    computed: {},
     methods: {}
 }
 

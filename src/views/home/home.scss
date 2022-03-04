@@ -1,7 +1,20 @@
 .el-container{
   height: 100%;
-}
+  .el-aside{
+    box-shadow: 2px 0 8px #1d23290d;
+    width: $--menu-width !important;
+    z-index: 3;
+    transition: width 0.15s;
+    -webkit-transition: width 0.15s;
+    -moz-transition: width 0.15s;
+    -o-transition: width 0.15s;
+  }
 
-.main{
-  height: 1000px;
+  .el-aside.collapse{
+    width:$--menu-collapse-width !important;
+  }
+
+  .el-container.collapse{
+    width:$--menu-collapse-width !important;
+  }
 }

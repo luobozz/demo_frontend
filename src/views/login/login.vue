@@ -4,7 +4,7 @@
       <div class="login">
         <div class="head mg-b-lg flex jc-sb al-fe text-bd">
           <div class="slogan">欢迎使用!</div>
-          <div class="title">{{ systemName }}</div>
+          <div class="title">{{ system.name }}</div>
         </div>
         <div class="main">
           <div class="tabs flex mg-b-lg mg-t-md">
@@ -31,6 +31,7 @@
 
 <script>
 import methods from "./login.js";
+import systemMixin from "@/mixin/section/system.mixin";
 
 export default {
   name: "login",
@@ -40,6 +41,7 @@ export default {
       pwdKeeper: false
     }
   },
+  mixins:[systemMixin],
   created() {
   },
   computed: {},
