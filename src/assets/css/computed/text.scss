@@ -1,0 +1,19 @@
+.text-bd {
+  font-weight: bold;
+}
+
+.text-sm {
+  font-size: 80% !important;
+
+  * {
+    font-size: 80% !important;
+  }
+}
+
+.text-color-sub {
+  color: $--color-text-secondary !important;
+
+  * {
+    color: $--color-text-secondary !important;
+  }
+}

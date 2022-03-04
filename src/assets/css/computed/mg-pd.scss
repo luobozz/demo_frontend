@@ -7,10 +7,10 @@ $--mg-direction: left, right, top, bottom;
     $direction-index:nth($--mg-direction-index, $j);
     $direction:nth($--mg-direction, $j);
     .mg-#{$direction-index}-#{$size} {
-      margin-#{$direction}:#{$size-num}px;
+      margin-#{$direction}:#{$size-num}px !important;
     }
     .pd-#{$direction-index}-#{$size} {
-      padding-#{$direction}:#{$size-num}px;
+      padding-#{$direction}:#{$size-num}px !important;
     }
   }
 }
