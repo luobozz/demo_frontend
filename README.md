@@ -15,5 +15,7 @@
 `.\node_modules\.bin\node-sass .\src\assets\css\computed\index.scss .\src\assets\css\computed\test.css
 `
 ## TODO LIST
+- [ ] 初始化项目
+- [ ] 添加CZ
 - [ ] 响应式处理
 - [ ] 做一个快捷添加通过`element.demand.config.js`添加UI框架组件的脚本
