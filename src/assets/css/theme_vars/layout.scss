@@ -5,3 +5,11 @@ $--main-collapse-width:calc(100vw - #{$--menu-collapse-width});
 $--head-height: 55px;
 $--foot-height: 50px;
 $--body-height:calc(100vh - #{$--foot-height});
+
+//48,24,14,10,5,2;
+$--padding-max:48px;;
+$--padding-lg:25px;
+$--padding-md:16px;
+$--padding-sm:10px;
+$--padding-xs:5px;
+$--padding-min:2px;

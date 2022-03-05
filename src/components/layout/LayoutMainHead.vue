@@ -25,14 +25,26 @@
       <div class="btn">
         <lb-icon type="el-icon-setting"></lb-icon>
       </div>
-      <div class="account-info flex al-ct pd-l-sm pd-r-sm">
-        <lb-avatar class="mg-r-sm head-pic" type="img"
-                   error-icon="svg-iconheadimg"
-                   src="http://122.112.142.111/s/edu/res/v/image/2021/6/24/1915e3584b158cc6cda4c9774615ab04.jpg"
-                   size="small"/>
-        <div class="">LUOBO</div>
-<!--        <lb-icon type="el-icon-arrow-down"></lb-icon>-->
-      </div>
+
+      <el-dropdown size="medium">
+        <div class="account-info flex al-ct pd-l-sm pd-r-sm">
+          <lb-avatar class="mg-r-sm head-pic" type="img"
+                     error-icon="svg-iconheadimg"
+                     src="http://122.112.142.111/s/edu/res/v/image/2021/6/24/1915e3584b158cc6cda4c9774615ab04.jpg"
+                     size="small"/>
+          <div class="">LUOBO</div>
+        </div>
+        <el-dropdown-menu slot="dropdown">
+          <el-dropdown-item>
+            <lb-icon type="el-icon-setting"></lb-icon>
+            <span>用户设置</span>
+          </el-dropdown-item>
+          <el-dropdown-item divided>
+            <lb-icon type="el-icon-switch-button"></lb-icon>
+            <span>退出登录</span>
+          </el-dropdown-item>
+        </el-dropdown-menu>
+      </el-dropdown>
     </div>
   </div>
 </template>
@@ -68,12 +80,13 @@ export default {
       }
     }
 
-    .btn:hover,.account-info:hover {
+    .btn:hover, .account-info:hover {
       background-color: $--background-color-head-btn-hover;
     }
 
-    .account-info{
+    .account-info {
       cursor: pointer;
+      height: 100%;
     }
 
   }

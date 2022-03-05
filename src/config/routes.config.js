@@ -2,7 +2,7 @@ export const asyncRouter = [
     {
         path: '/home',
         name: 'home',
-        component: () => import('../views/home/home.vue'),
+        component: () => import('@/views/home/home.vue'),
         children: []
     }
 ]
@@ -15,12 +15,18 @@ export const constantRouter = [
     }, {
         path: '/login',
         name: 'login',
-        component: () => import(/* webpackChunkName: "about" */ '../views/login/login.vue'),
+        component: () => import(/* webpackChunkName: "about" */ '@/views/login/login.vue'),
     },
     {
         path: '/home',
         name: 'home',
         component: () => import('../views/home/home.vue'),
-        children: []
+        children: [
+            {
+                path: '/home/about',
+                name: 'about',
+                component: () => import(/* webpackChunkName: "about" */ '@/views/system/about/about.vue'),
+            },
+        ]
     }
 ]

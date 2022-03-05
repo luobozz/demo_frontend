@@ -1,6 +1,6 @@
 <template>
   <div class="layout-main-body">
-    body
+    <router-view ref="routerView" class="router"/>
   </div>
 </template>
 

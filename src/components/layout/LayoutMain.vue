@@ -56,6 +56,7 @@ export default {
   .layout-main-body{
     padding-top: $--head-height;
     min-height: $--body-height;
+    padding: $--head-height+$--padding-md $--padding-md $--padding-md $--padding-md
   }
 
   .layout-main-foot{

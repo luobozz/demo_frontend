@@ -13,8 +13,10 @@ import '@/assets/css/theme_vars/index.scss'
 
 import lbIcon from '@/components/global/lbIcon/lbIcon'
 import lbAvatar from '@/components/global/lbAvatar/lbAvatar'
+import layoutCard from '@/components/layout/layoutCard'
 Vue.component('lb-icon', lbIcon)
 Vue.component('lb-avatar', lbAvatar)
+Vue.component('layout-card', layoutCard)
 
 
 Vue.config.productionTip = false
