@@ -12,7 +12,9 @@ import '@/assets/css/theme_vars/index.scss'
 // Vue.mixin(mixin)
 
 import lbIcon from '@/components/global/lbIcon/lbIcon'
+import lbAvatar from '@/components/global/lbAvatar/lbAvatar'
 Vue.component('lb-icon', lbIcon)
+Vue.component('lb-avatar', lbAvatar)
 
 
 Vue.config.productionTip = false
