@@ -1,3 +1,13 @@
+.media-mobile {
+  .login-box {
+    width: 100% !important;
+    height: 100% !important;
+    min-width: $--media-min-width;
+    border-radius: 0 !important;
+    margin-bottom: 0 !important;
+  }
+}
+
 .content {
   background-color: $--background-color-base;
   display: flex;
@@ -22,6 +32,7 @@
 
       .head {
         color: $--color-primary;
+
         .slogan {
           font-size: 150%;
         }

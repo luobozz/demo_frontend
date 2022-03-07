@@ -1,16 +1,23 @@
+import {mapState} from "vuex";
+
 const mixin = {
     data() {
-        return {
-        }
+        return {}
     },
-
     mounted() {
     },
     created() {
     },
     computed: {
+        ...mapState({
+            media: state => state.systemStore.media.media,
+        }),
     },
-    methods: {}
+    methods: {
+        isSuitMedia(arr){
+            return typeof arr==="string"?arr===this.media:arr.indexOf(this.media)>-1
+        }
+    }
 }
 
 

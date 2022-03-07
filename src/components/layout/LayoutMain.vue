@@ -26,6 +26,14 @@ export default {
 
 <style lang="scss" scoped>
 
+.media-mobile{
+  .layout-main-head{
+    width: 100% !important;
+    min-width: $--media-min-width;
+    left:0;
+  }
+}
+
 .layout-main.collapse{
   .layout-main-head{
     width: $--main-collapse-width;
@@ -50,7 +58,6 @@ export default {
     height: $--head-height;
     background-color: $--avatar-font-color;
     z-index: 2;
-    box-shadow: 0 1px 2px #00152914;
   }
 
   .layout-main-body{

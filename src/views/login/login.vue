@@ -3,8 +3,8 @@
     <div class="login-box">
       <div class="login">
         <div class="head mg-b-lg flex jc-sb al-fe text-bd">
-          <div class="slogan">欢迎使用!</div>
-          <div class="title">{{ system.name }}</div>
+          <div class="slogan" v-show="isSuitMedia('pc')">欢迎使用!</div>
+          <div class="title al-end">{{ system.name }}</div>
         </div>
         <div class="main">
           <div class="tabs flex mg-b-lg mg-t-md">
@@ -41,7 +41,7 @@ export default {
       pwdKeeper: false
     }
   },
-  mixins:[systemMixin],
+  mixins: [systemMixin],
   created() {
   },
   computed: {},

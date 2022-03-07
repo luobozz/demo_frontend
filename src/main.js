@@ -8,8 +8,8 @@ import "@/config/element.demand.config"
 import '@/assets/css/theme_vars/index.scss'
 
 // 全局mixin负责系统crud逻辑部分
-// import mixin from '@/mixin/global/mixin'
-// Vue.mixin(mixin)
+import mixin from '@/mixin/global/mixin'
+Vue.mixin(mixin)
 
 import lbIcon from '@/components/global/lbIcon/lbIcon'
 import lbAvatar from '@/components/global/lbAvatar/lbAvatar'

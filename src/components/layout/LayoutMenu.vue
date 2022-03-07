@@ -6,7 +6,7 @@
     <div class="menu">
       <el-menu
           :collapse="layout.menuCollapse"
-          :collapse-transition = "false">
+          :collapse-transition="false">
         <el-submenu index="1">
           <template slot="title">
             <i class="el-icon-menu"></i>
@@ -29,6 +29,9 @@
         </el-menu-item>
       </el-menu>
     </div>
+    <div class="collapse flex al-ct jc-ct" @click="menuCollapse">
+      <lb-icon :type="layout.menuCollapse?'el-icon-s-unfold':'el-icon-s-fold'"></lb-icon>
+    </div>
   </div>
 </template>
 
@@ -38,26 +41,38 @@ import layoutMixin from "@/mixin/section/layout.mixin";
 
 export default {
   name: "LayoutMenu",
-  data(){
-    return {
-
-    }
+  data() {
+    return {}
   },
-  mixins:[systemMixin,layoutMixin],
+  mixins: [systemMixin, layoutMixin],
   created() {
   }
 }
 </script>
 
 <style lang="scss" scoped>
-.layout-menu.collapse{
+$--collapse-height: 50px;
+
+.media-mobile {
+  .menu {
+    height: calc(100% - #{$--head-height} - #{$--collapse-height}) !important;
+  }
+
+  .collapse {
+    height: $--collapse-height !important;
+  }
+}
+
+.layout-menu.collapse {
 
 }
+
 .layout-menu {
   position: relative;
   width: 100%;
   height: 100%;
   background-color: $--background-color-menu;
+  overflow: hidden;
 
   .system-name {
     height: $--head-height;
@@ -78,6 +93,12 @@ export default {
       }
 
     }
+  }
+
+  .collapse {
+    height: 0;
+    font-size: 150%;
+    border-top: 1px solid $--border-color-base;
   }
 }
 </style>

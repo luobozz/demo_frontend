@@ -1,3 +1,21 @@
+.media-mobile{
+  .el-container{
+    .el-aside{
+      position: absolute;
+      height: 100%;
+      display: block;
+    }
+
+    .el-aside.collapse{
+      display: none;
+    }
+
+    .el-container{
+      width: 100% !important;
+      min-width: $--media-min-width;
+    }
+  }
+}
 .el-container{
   height: 100%;
   .el-aside{
@@ -14,7 +32,7 @@
     width:$--menu-collapse-width !important;
   }
 
-  .el-container.collapse{
-    width:$--menu-collapse-width !important;
-  }
+  //.el-container.collapse{
+  //  width:$--menu-collapse-width !important;
+  //}
 }

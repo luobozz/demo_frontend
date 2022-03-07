@@ -1,15 +1,21 @@
-$--menu-width:220px;
-$--menu-collapse-width:64px;
-$--main-width:calc(100vw - #{$--menu-width});
-$--main-collapse-width:calc(100vw - #{$--menu-collapse-width});
-$--head-height: 55px;
+$--media-min-width: 300px;
+
+$--menu-width: 220px;
+$--menu-collapse-width: 64px;
+$--main-width: calc(100vw - #{$--menu-width});
+$--main-collapse-width: calc(100vw - #{$--menu-collapse-width});
+$--head-top-height: 55px;
+$--head-carousel-height: 40px;
+$--head-height: $--head-top-height+$--head-carousel-height;
 $--foot-height: 50px;
-$--body-height:calc(100vh - #{$--foot-height});
+$--body-height: calc(100vh - #{$--foot-height});
 
 //48,24,14,10,5,2;
-$--padding-max:48px;;
-$--padding-lg:25px;
-$--padding-md:16px;
-$--padding-sm:10px;
-$--padding-xs:5px;
-$--padding-min:2px;
+$--padding-max: 48px;
+;
+$--padding-lg: 25px;
+$--padding-md: 16px;
+$--padding-sm: 10px;
+$--padding-xs: 5px;
+$--padding-min: 2px;
+
