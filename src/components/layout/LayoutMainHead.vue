@@ -49,8 +49,8 @@
       </div>
     </div>
 
-    <div class="head-carousel flex al-ct pd-r-md pd-l-md text-sm text-color-sub">
-      <lb-icon type="svg-icon-carousel"></lb-icon>
+    <div class="head-carousel flex al-ct pd-r-md pd-l-md  text-color-sub">
+      <lb-icon class="mg-r-sm" type="svg-icon-cl"></lb-icon>
       通知
     </div>
 
@@ -107,7 +107,7 @@ export default {
     height: $--head-carousel-height;
 
     .lb-icon{
-      font-size: 200% !important;
+      font-size: 110% !important;
     }
   }
   & > * {

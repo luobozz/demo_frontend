@@ -1,20 +1,19 @@
 <template>
   <div class="layout-card">
-    <div class="header-line" v-if="disable"></div>
-    <div class="header flex jc-sb al-ct" v-if="disable">
+    <div class="header flex jc-sb al-ct">
             <span class="title">
-                <lb-icon class="mg-r-md" :type="titleIcon"/>
+                <lb-icon class="mg-r-sm" :type="titleIcon"/>
                 <span>{{ title }}</span>
             </span>
       <div v-if="titleBtn.length>0" class="title-btn">
-        <a-button-group>
-          <a-button v-for="(btn,i) in titleBtn" :key="i" @click="clickTitleBtn(btn)"
+        <el-button-group>
+          <el-button v-for="(btn,i) in titleBtn" :key="i" @click="clickTitleBtn(btn)"
                     :disabled="btn.disabled?btn.disabled:false" :loading="btn.loading?btn.loading:false"
-                    :type="btn.type?btn.type:''">
+                    :type="btn.type?btn.type:''" :size="btn.size?btn.size:'mini'">
             <lb-icon v-if="btn.icon&&!btn.loading" :type="btn.icon" :class="{'mg-r-min':checkTitle(btn)}"></lb-icon>
             {{ btn.title }}
-          </a-button>
-        </a-button-group>
+          </el-button>
+        </el-button-group>
       </div>
     </div>
     <div :class="{'content':true}">
@@ -37,22 +36,10 @@ export default {
   props: {
     title: String,
     titleIcon: String,
-    spaceContent: {
-      type: Boolean,
-      default: false,
-    },
-    borderContent: {
-      type: Boolean,
-      default: false,
-    },
     titleBtn: {
       type: Array,
       default: () => []
     },
-    disable: {
-      type: Boolean,
-      default: true
-    }
   },
   computed: {
     checkTitle() {
@@ -75,7 +62,7 @@ export default {
 .layout-card {
   background-color: $--background-color-base-f;
   position: relative;
-  padding: $--padding-lg+8px $--padding-lg $--padding-lg $--padding-lg;
+  padding:0 $--padding-lg $--padding-lg $--padding-lg;
   transition: .3s;
   overflow: hidden;
   //box-shadow: 0 7px 14px 0 rgba(65, 69, 88, 0.1), 0 3px 6px 0 rgba(0, 0, 0, 0.07);
@@ -86,29 +73,14 @@ export default {
     width: 100%;
   }
 
-  .header-line {
-    height: 1px;
-    background-color: $--border-color-base;
-    margin: 0 0 $--padding-lg + 5px 0;
-  }
-
   .header {
-    position: absolute;
-    top: $--font-size-base - 3px;
-    left: 0;
-    height: 40px;
-
+    padding: $--padding-lg 0;
     .title {
       background-color: $--background-color-base-f;
       font-size: $--font-size-large;
-      padding-right: 8px;
-      margin-left: $--padding-lg;
     }
 
     .title-btn {
-      background-color: $--background-color-base-f;
-      padding-left: 8px;
-      margin-right: $--padding-lg;
     }
   }
 

@@ -1,5 +1,5 @@
 <template>
-  <div :class="{'layout-main scroll':true,'collapse':layout.menuCollapse}">
+  <div :class="{'layout-main':true,'collapse':layout.menuCollapse}">
     <layout-main-head></layout-main-head>
     <layout-main-body></layout-main-body>
     <layout-main-foot></layout-main-foot>
@@ -16,7 +16,6 @@ export default {
   name: "LayoutMain",
   mixins:[layoutMixin],
   components:{
-    LayoutMainBody,
     "layout-main-head":LayoutMainHead,
     "layout-main-body":LayoutMainBody,
     "layout-main-foot":LayoutMainFoot
@@ -31,6 +30,9 @@ export default {
     width: 100% !important;
     min-width: $--media-min-width;
     left:0;
+  }
+  .layout-main-body{
+    padding: $--head-height+$--padding-md $--padding-sm $--padding-md $--padding-sm !important;
   }
 }
 
@@ -63,7 +65,7 @@ export default {
   .layout-main-body{
     padding-top: $--head-height;
     min-height: $--body-height;
-    padding: $--head-height+$--padding-md $--padding-md $--padding-md $--padding-md
+    padding: $--head-height+$--padding-md $--padding-md $--padding-md $--padding-md;
   }
 
   .layout-main-foot{

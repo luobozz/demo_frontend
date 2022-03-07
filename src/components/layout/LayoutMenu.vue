@@ -3,7 +3,7 @@
     <div class="system-name flex al-ct jc-ct">
       <div v-show="!layout.menuCollapse">{{ system.name }}</div>
     </div>
-    <div class="menu">
+    <div class="menu scroll">
       <el-menu
           :collapse="layout.menuCollapse"
           :collapse-transition="false">
@@ -29,7 +29,7 @@
         </el-menu-item>
       </el-menu>
     </div>
-    <div class="collapse flex al-ct jc-ct" @click="menuCollapse">
+    <div class="collapse flex al-ct jc-ct" @click="menuCollapse" v-show="isSuitMedia('mobile')">
       <lb-icon :type="layout.menuCollapse?'el-icon-s-unfold':'el-icon-s-fold'"></lb-icon>
     </div>
   </div>
@@ -55,7 +55,7 @@ $--collapse-height: 50px;
 
 .media-mobile {
   .menu {
-    height: calc(100% - #{$--head-height} - #{$--collapse-height}) !important;
+    height: calc(100% - #{$--head-top-height} - #{$--collapse-height}) !important;
   }
 
   .collapse {
@@ -75,14 +75,14 @@ $--collapse-height: 50px;
   overflow: hidden;
 
   .system-name {
-    height: $--head-height;
+    height: $--head-top-height;
     font-size: 150%;
     font-weight: bold;
     color: $--color-primary;
   }
 
   .menu {
-    height: calc(100% - #{$--head-height});
+    height: calc(100% - #{$--head-top-height});
 
     .el-menu {
       border-right: none;
