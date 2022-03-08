@@ -28,7 +28,6 @@ export default {
     return {}
   },
   created() {
-    console.log(this.$route)
   },
   computed: {},
   methods: methods

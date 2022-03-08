@@ -1,8 +1,7 @@
 import Vue from 'vue'
-import '@/assets/css/theme_vars/index.scss'
-import {Button,ButtonGroup, Select, Divider,Checkbox,Aside,Container,Menu,Submenu,MenuItem,Breadcrumb,BreadcrumbItem,Dropdown,DropdownMenu,DropdownItem} from 'element-ui';
+import {Button,ButtonGroup, Select, Divider,Checkbox,Aside,Container,Menu,Submenu,MenuItem,Breadcrumb,BreadcrumbItem,Dropdown,DropdownMenu,DropdownItem,Form,FormItem,Input} from 'element-ui';
 //TODO 为啥不能动态引入css
-[Button,ButtonGroup, Select, Divider,Checkbox,Aside,Container,Menu,Submenu,MenuItem,Breadcrumb,BreadcrumbItem,Dropdown,DropdownMenu,DropdownItem].forEach(fo => {
+[Button,ButtonGroup, Select, Divider,Checkbox,Aside,Container,Menu,Submenu,MenuItem,Breadcrumb,BreadcrumbItem,Dropdown,DropdownMenu,DropdownItem,Form,FormItem,Input].forEach(fo => {
     Vue.use(fo)
 })
 import("element-ui/packages/theme-chalk/src/button.scss")
@@ -21,3 +20,6 @@ import("element-ui/packages/theme-chalk/src/breadcrumb-item.scss")
 import("element-ui/packages/theme-chalk/src/dropdown.scss")
 import("element-ui/packages/theme-chalk/src/dropdown-menu.scss")
 import("element-ui/packages/theme-chalk/src/descriptions-item.scss")
+import("element-ui/packages/theme-chalk/src/form.scss")
+import("element-ui/packages/theme-chalk/src/form-item.scss")
+import("element-ui/packages/theme-chalk/src/input.scss")

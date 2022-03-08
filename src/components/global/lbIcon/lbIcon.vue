@@ -1,10 +1,11 @@
 <template>
-    <i v-if="type.indexOf('el')>-1" :class="[typeClass]" :style="{color:color,'font-size':fontSize}" @click="onClick()"></i>
-    <div v-else-if="type.indexOf('svg')==-1" :class="[typeClass]" :style="{color:color,'font-size':fontSize}"
-         @click="onClick()"></div>
-    <svg v-else-if="type.indexOf('svg')>-1" :class="[typeClass]" aria-hidden="true" :style="{'font-size':fontSize}">
-      <use :xlink:href="getIcon"></use>
-    </svg>
+  <i v-if="type.indexOf('el')>-1" :class="[typeClass]" :style="{color:color,'font-size':fontSize}"
+     @click="onClick()"></i>
+  <div v-else-if="type.indexOf('svg')==-1" :class="[typeClass]" :style="{color:color,'font-size':fontSize}"
+       @click="onClick()"></div>
+  <svg v-else-if="type.indexOf('svg')>-1" :class="[typeClass]" aria-hidden="true" :style="{'font-size':fontSize}">
+    <use :xlink:href="getIcon"></use>
+  </svg>
 </template>
 
 <script>
@@ -14,7 +15,10 @@ export default {
     /**
      * 图标类型
      */
-    type: String,
+    type: {
+      type: String,
+      default: ""
+    },
     /**
      * 图标颜色
      */
@@ -32,6 +36,10 @@ export default {
       return `${this.size}px`
     },
     typeClass() {
+      // console.error(this.type)
+      if (this.type === "") {
+        return ""
+      }
       if (this.type.indexOf('fa') != -1) {
         return `lb-icon fa ${this.type}`
       } else if (this.type.indexOf('if') != -1) {

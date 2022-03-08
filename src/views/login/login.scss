@@ -58,7 +58,7 @@
             color: $--color-text-regular;
           }
 
-          input {
+          /deep/ input {
             border: none;
             padding: 15px 20px;
             border-radius: $--border-radius-base;
