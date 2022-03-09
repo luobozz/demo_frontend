@@ -19,17 +19,18 @@ export default {
             }
             return lodash.cloneDeep(params)
         },
-        toTimestamp(){
+        toTimestamp() {
 
         }
     },
     resultHandle(res, custom) {
         return new Promise((resolve, reject) => {
             if (res.code == 200 || res.code == 404) {
+                const type = res.code == 200 ? "success" : "warning"
                 resolve(res);
                 if (!(custom?.noToast?.all || custom?.noToast.success)) {
                     uiUtils.toast({
-                        type: res.code,
+                        type: type,
                         message: res.message
                     })
                 }
@@ -39,7 +40,11 @@ export default {
                     store.dispatch("logout", {})
                 }
             } else {
-                exception.toastError(`${res.code}:${res.message}`, custom?.noToast);
+                if (!(custom?.noToast?.all || custom?.noToast?.error)) {
+                    exception.toastError(`${res.code}:${res.message}`, custom?.noToast);
+                }else {
+                    exception.silentError(`${res.code}:${res.message}`)
+                }
                 reject(res)
             }
         })
@@ -50,14 +55,14 @@ export default {
         header[httpConfig.header.ACCESS_TOKEN] = store.getters.token;
         return header;
     },
-    ping(url){
-        const pingUrl=url.startsWith("http://")?url:`http://${url}`
-        axios.get(`${pingUrl}`,{},{},{noProcess:true}).then(p=>{
+    ping(url) {
+        const pingUrl = url.startsWith("http://") ? url : `http://${url}`
+        axios.get(`${pingUrl}`, {}, {}, {noProcess: true}).then(p => {
             uiUtils.toast({
-                type:200,
+                type: "success",
                 message: `${url} 连接成功`
             })
-        }).catch(err=>{
+        }).catch(err => {
             exception.toastError(`连接失败,事由[${err}]`);
         })
     }

@@ -66,7 +66,7 @@ service.interceptors.response.use(
         return response;
     },
     (error) => {
-        const msg = error.response?.statusText || 'Network Error';
+        const msg = error.response?.statusText || '网络错误';
         throw new Error(msg)
     }
 )

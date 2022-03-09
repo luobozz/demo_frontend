@@ -11,13 +11,13 @@ export default {
             console.error(error)
         }
     },
-    toastError: (msg, noToast) => {
-        console.error(`error:${msg}`)
-        if (!(noToast?.all||noToast?.error)) {
-            uiUtils.toast({
-                type: 500,
-                message: msg
-            })
+    toastError: (msg, onlyToast) => {
+        if (!onlyToast) {
+            console.error(`error:${msg}`)
         }
+        uiUtils.toast({
+            type: "warning",
+            message: msg
+        })
     }
 }

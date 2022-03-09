@@ -17,8 +17,8 @@ Vue.component('lb-icon', lbIcon)
 Vue.component('lb-avatar', lbAvatar)
 Vue.component('layout-card', layoutCard)
 
-import util from './utils/install'
-Vue.use(util)
+import globalUtil from '@/config/global.util.config'
+Vue.use(globalUtil)
 
 Vue.config.productionTip = false
 new Vue({
