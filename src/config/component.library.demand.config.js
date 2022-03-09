@@ -1,6 +1,11 @@
 import Vue from 'vue'
-import {Button, Select, Divider,Checkbox,Menu,Breadcrumb,Dropdown,Form,Input} from 'ant-design-vue';
+import {Button, Select, Divider,Checkbox,Menu,Breadcrumb,Dropdown,FormModel,Input} from 'ant-design-vue';
+import lodash from "lodash"
 //TODO 为啥不能动态引入css
-[Button, Select, Divider,Checkbox,Menu,Breadcrumb,Dropdown,Form,Input].forEach(fo => {
+[Button, Select, Divider,Checkbox,Menu,Breadcrumb,Dropdown,FormModel,Input].forEach(fo => {
     Vue.use(fo)
+    const cssName=lodash.kebabCase(fo.name.replace("A",''))
+    import(`ant-design-vue/lib/${cssName}/style`)
 })
+
+// import 'ant-design-vue/lib/menu/style'

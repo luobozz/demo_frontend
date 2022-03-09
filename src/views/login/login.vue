@@ -10,26 +10,29 @@
           <div class="tabs flex mg-b-lg mg-t-md">
             <div class="tab pd-b-min active">登录账户</div>
           </div>
-          <a-form :model="form.login.data" :rules="form.login.rule" :ref="form.login.ref">
+          <a-form-model
+              :model="form.login.data"
+              :rules="form.login.rule"
+              :ref="form.login.ref">
             <div class="input account flex column mg-b-min">
               <div class="title mg-b-min">账户</div>
-              <a-form-item prop="account">
+              <a-form-model-item prop="account">
                 <a-input class="account" v-model="form.login.data.account"></a-input>
-              </a-form-item>
+              </a-form-model-item>
             </div>
             <div class="input account flex column mg-b-min">
               <div class="title mg-b-min">密码</div>
-              <a-form-item prop="password">
+              <a-form-model-item prop="password">
                 <a-input-password class="password" v-model="form.login.data.password"></a-input-password>
-              </a-form-item>
+              </a-form-model-item>
             </div>
-          </a-form>
+          </a-form-model>
 
           <div :class="{'remember-password cur-pointer flex al-ct  mg-b-max':true,'keep-pwd':pwdKeeper}">
             <a-checkbox class="mg-r-xs" v-model="pwdKeeper"></a-checkbox>
             <span @click="keepPwd">记住我</span>
           </div>
-          <a-button class="login-btn mg-b-lg" type="primary" round :loading="form.login.loading" @click="loginHandle">
+          <a-button class="login-btn mg-b-lg" type="primary" shape="round" size="large" :loading="form.login.loading" @click="loginHandle">
             登录
           </a-button>
         </div>
