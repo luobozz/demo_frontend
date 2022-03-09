@@ -1,0 +1,23 @@
+@mg-direction-index: l, r, t, b;
+@mg-direction: left, right, top, bottom;
+
+.mg-size(@i) when (@i <=length(@common-size-index)) {
+  @size: extract(@common-size-index, @i);
+  @size-num: extract(@mg-pd-size, @i);
+  .mg-dir(@j) when (@j <=length(@mg-direction-index)) {
+    @direction-index: extract(@mg-direction-index, @j);
+    @direction: extract(@mg-direction, @j);
+    .mg-@{direction-index}-@{size} {
+      margin-@{direction}:@size-num * 1px;
+    }
+    .pd-@{direction-index}-@{size} {
+      padding-@{direction}:@size-num * 1px;
+    }
+    .mg-dir((@j + 1));
+  }
+  .mg-dir(1);
+  .mg-size(@i + 1);
+}
+
+
+.mg-size(1);

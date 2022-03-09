@@ -6,14 +6,14 @@
                 <span>{{ title }}</span>
             </span>
       <div v-if="titleBtn.length>0" class="title-btn">
-        <el-button-group>
-          <el-button v-for="(btn,i) in titleBtn" :key="i" @click="clickTitleBtn(btn)"
+        <a-button-group>
+          <a-button v-for="(btn,i) in titleBtn" :key="i" @click="clickTitleBtn(btn)"
                     :disabled="btn.disabled?btn.disabled:false" :loading="btn.loading?btn.loading:false"
                     :type="btn.type?btn.type:''" :size="btn.size?btn.size:'mini'">
             <lb-icon v-if="btn.icon&&!btn.loading" :type="btn.icon" :class="{'mg-r-min':checkTitle(btn)}"></lb-icon>
             {{ btn.title }}
-          </el-button>
-        </el-button-group>
+          </a-button>
+        </a-button-group>
       </div>
     </div>
     <div :class="{'content':true}">
@@ -58,11 +58,11 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="less" scoped>
 .layout-card {
-  background-color: $--background-color-base-f;
+  background-color: @background-color-base-f;
   position: relative;
-  padding:0 $--padding-lg $--padding-lg $--padding-lg;
+  padding:0 @padding-lg @padding-lg @padding-lg;
   transition: .3s;
   overflow: hidden;
   //box-shadow: 0 7px 14px 0 rgba(65, 69, 88, 0.1), 0 3px 6px 0 rgba(0, 0, 0, 0.07);
@@ -74,10 +74,10 @@ export default {
   }
 
   .header {
-    padding: $--padding-lg 0;
+    padding: @padding-lg 0;
     .title {
-      background-color: $--background-color-base-f;
-      font-size: $--font-size-large;
+      background-color: @background-color-base-f;
+      font-size: @heading-1-size;
     }
 
     .title-btn {
@@ -90,6 +90,6 @@ export default {
 }
 
 .layout-card:not(:last-child) {
-  margin-bottom: $--padding-lg;
+  margin-bottom: @padding-lg;
 }
 </style>

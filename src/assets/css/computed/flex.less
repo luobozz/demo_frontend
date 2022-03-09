@@ -1,0 +1,45 @@
+.flex {
+  display: flex;
+}
+
+.flex.no-shrink {
+  & > * {
+    flex-shrink: 0;
+  }
+}
+
+.flex:not(.jc-fe) {
+  & > .al-end {
+    margin-left: auto;
+  }
+}
+
+.flex.jc-fe {
+  & > .al-end {
+    margin-right: auto;
+  }
+}
+
+@flex-direction: column, row;
+@align-items: flex-start, flex-end, center;
+@align-items-index: fs, fe, ct;
+@justify-content: flex-start, flex-end, center, space-around, space-between;
+@justify-content-index: fs, fe, ct, sa, sb;
+
+each(@flex-direction, {
+  .flex.@{value} {
+    flex-direction: @value;
+  }
+})
+
+each(@align-items-index, {
+  .flex.al-@{value} {
+    align-items: extract(@align-items, @index);
+  }
+})
+
+each(@justify-content-index, {
+  .flex.jc-@{value} {
+    justify-content: extract(@justify-content, @index);
+  }
+})

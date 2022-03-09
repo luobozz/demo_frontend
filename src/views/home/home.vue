@@ -1,13 +1,13 @@
 <template>
   <div class="content">
-    <el-container>
-      <el-aside :class="{'collapse':layout.menuCollapse}">
+    <a-container>
+      <a-aside :class="{'collapse':layout.menuCollapse}">
         <layout-menu/>
-      </el-aside>
-      <el-container :class="{'collapse':layout.menuCollapse}">
+      </a-aside>
+      <a-container :class="{'collapse':layout.menuCollapse}">
         <layout-main/>
-      </el-container>
-    </el-container>
+      </a-container>
+    </a-container>
   </div>
 </template>
 
@@ -34,6 +34,6 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-@import "src/views/home/home";
+<style lang="less" scoped>
+@import "./home";
 </style>

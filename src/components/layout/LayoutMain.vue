@@ -23,22 +23,22 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="less" scoped>
 
 .media-mobile{
   .layout-main-head{
     width: 100% !important;
-    min-width: $--media-min-width;
+    min-width: @media-min-width;
     left:0;
   }
   .layout-main-body{
-    padding: $--head-height+$--padding-md $--padding-sm $--padding-md $--padding-sm !important;
+    padding: @head-height+@padding-md @padding-sm @padding-md @padding-sm !important;
   }
 }
 
 .layout-main.collapse{
   .layout-main-head{
-    width: $--main-collapse-width;
+    width: @main-collapse-width;
   }
 }
 
@@ -55,20 +55,20 @@ export default {
     position: fixed;
     top: 0;
     right: 0;
-    width: $--main-width;
-    height: $--head-height;
-    background-color: $--avatar-font-color;
+    width: @main-width;
+    height: @head-height;
+    background-color: @background-color-menu;
     z-index: 2;
   }
 
   .layout-main-body{
-    padding-top: $--head-height;
-    min-height: $--body-height;
-    padding: $--head-height+$--padding-md $--padding-md $--padding-md $--padding-md;
+    padding-top: @head-height;
+    min-height: @body-height;
+    padding: @head-height+@padding-md @padding-md @padding-md @padding-md;
   }
 
   .layout-main-foot{
-    height: $--foot-height;
+    height: @foot-height;
   }
 }
 

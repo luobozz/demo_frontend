@@ -1,8 +1,6 @@
-import {Message, Notification} from "element-ui";
+// import {Message, Notification} from "element-ui";
 import throttler from "@/utils/data/throttler"
 
-import("element-ui/packages/theme-chalk/src/message.scss")
-import("element-ui/packages/theme-chalk/src/message-box.scss")
 
 const _this = {
     toast(opt) {

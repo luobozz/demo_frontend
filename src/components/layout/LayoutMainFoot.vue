@@ -18,7 +18,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="less" scoped>
 .layout-main-foot {
   font-size: 85%;
 

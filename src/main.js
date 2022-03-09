@@ -4,7 +4,7 @@ import router from './router'
 import store from './store'
 
 //UI框架按需引入
-import "@/config/element.demand.config"
+import "@/config/component.library.demand.config"
 
 // 全局mixin负责系统crud逻辑部分
 import mixin from '@/mixin/global/mixin'

@@ -60,7 +60,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="less" scoped>
 .error-img-content {
   width: 100%;
   height: 100%;
@@ -74,7 +74,7 @@ export default {
     border: 1px solid white;
     width: 95%;
     height: 95%;
-    box-shadow: $--box-shadow-base;
+    box-shadow: @box-shadow-base;
 
     & > svg {
       width: 100%;

@@ -10,7 +10,7 @@
 
     /deep/ .el-container{
       width: 100% !important;
-      min-width: $--media-min-width;
+      min-width: @media-min-width;
       padding-left: 0 !important;
     }
   }
@@ -21,7 +21,7 @@
     position: fixed;
     top: 0;
     box-shadow: 2px 0 8px #1d23290d;
-    width: $--menu-width !important;
+    width: @menu-width !important;
     z-index: 3;
     height: 100%;
     transition: width 0.15s;
@@ -31,14 +31,14 @@
   }
 
   .el-aside.collapse{
-    width:$--menu-collapse-width !important;
+    width:@menu-collapse-width !important;
   }
 
   .el-container{
-    padding-left: $--menu-width;
+    padding-left: @menu-width;
   }
 
   .el-container.collapse{
-    padding-left: $--menu-collapse-width;
+    padding-left: @menu-collapse-width;
   }
 }

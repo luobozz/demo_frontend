@@ -67,7 +67,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="less" scoped>
 .lb-avatar {
   box-sizing: border-box;
   font-family: tabular-nums;
@@ -94,11 +94,11 @@ export default {
 }
 
 .lb-avatar.border {
-  border: $--border-base
+  border: 1px solid @border-color-base;
 }
 
 .lb-avatar.square {
-  border-radius: $--border-radius-base;
+  border-radius: @border-radius-base;
 }
 
 /*64 large 40 middle 32 normal 24 small*/

@@ -6,14 +6,14 @@
           <lb-icon :type="layout.menuCollapse?'el-icon-s-unfold':'el-icon-s-fold'"></lb-icon>
         </div>
         <div class="breadcrumb flex al-ct pd-l-sm pd-r-sm" v-show="isSuitMedia('pc')">
-          <el-breadcrumb separator="/">
-            <el-breadcrumb-item>
+          <a-breadcrumb separator="/">
+            <a-breadcrumb-item>
               首页
-            </el-breadcrumb-item>
-            <el-breadcrumb-item>
+            </a-breadcrumb-item>
+            <a-breadcrumb-item>
               活动管理
-            </el-breadcrumb-item>
-          </el-breadcrumb>
+            </a-breadcrumb-item>
+          </a-breadcrumb>
         </div>
       </div>
       <div class="right flex al-ct al-end">
@@ -27,7 +27,7 @@
           <lb-icon type="el-icon-setting"></lb-icon>
         </div>
 
-        <el-dropdown size="medium">
+        <a-dropdown size="medium">
           <div class="account-info flex al-ct pd-l-sm pd-r-sm">
             <lb-avatar class="mg-r-sm head-pic" type="img"
                        error-icon="svg-iconheadimg"
@@ -35,17 +35,17 @@
                        size="small"/>
             <div class="">LUOBO</div>
           </div>
-          <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item>
+          <a-dropdown-menu slot="dropdown">
+            <a-dropdown-item>
               <lb-icon type="el-icon-setting"></lb-icon>
               <span>用户设置</span>
-            </el-dropdown-item>
-            <el-dropdown-item divided>
+            </a-dropdown-item>
+            <a-dropdown-item divided>
               <lb-icon type="el-icon-switch-button"></lb-icon>
               <span>退出登录</span>
-            </el-dropdown-item>
-          </el-dropdown-menu>
-        </el-dropdown>
+            </a-dropdown-item>
+          </a-dropdown-menu>
+        </a-dropdown>
       </div>
     </div>
 
@@ -67,10 +67,10 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="less" scoped>
 .layout-main-head {
   &>.head-top{
-    height: $--head-top-height;
+    height: @head-top-height;
     box-shadow: 0 1px 2px #00152914;
     & > * {
       height: 100%;
@@ -92,7 +92,7 @@ export default {
       }
 
       .btn:hover, .account-info:hover {
-        background-color: $--background-color-head-btn-hover;
+        background-color: @background-color-head-btn-hover;
       }
 
       .account-info {
@@ -104,7 +104,7 @@ export default {
   }
 
   &>.head-carousel{
-    height: $--head-carousel-height;
+    height: @head-carousel-height;
 
     .lb-icon{
       font-size: 110% !important;

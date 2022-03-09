@@ -31,6 +31,6 @@ export default {
 }
 </script>
 
-<style lang="scss">
-@import "~@/assets/css/common.scss";
+<style lang="less">
+@import "~@/assets/css/common.less";
 </style>

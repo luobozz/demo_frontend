@@ -10,28 +10,28 @@
           <div class="tabs flex mg-b-lg mg-t-md">
             <div class="tab pd-b-min active">登录账户</div>
           </div>
-          <el-form :model="form.login.data" :rules="form.login.rule" :ref="form.login.ref">
+          <a-form :model="form.login.data" :rules="form.login.rule" :ref="form.login.ref">
             <div class="input account flex column mg-b-min">
               <div class="title mg-b-min">账户</div>
-              <el-form-item prop="account">
-                <el-input v-model="form.login.data.account"></el-input>
-              </el-form-item>
+              <a-form-item prop="account">
+                <a-input class="account" v-model="form.login.data.account"></a-input>
+              </a-form-item>
             </div>
             <div class="input account flex column mg-b-min">
               <div class="title mg-b-min">密码</div>
-              <el-form-item prop="password">
-                <el-input v-model="form.login.data.password"></el-input>
-              </el-form-item>
+              <a-form-item prop="password">
+                <a-input-password class="password" v-model="form.login.data.password"></a-input-password>
+              </a-form-item>
             </div>
-          </el-form>
+          </a-form>
 
           <div :class="{'remember-password cur-pointer flex al-ct  mg-b-max':true,'keep-pwd':pwdKeeper}">
-            <el-checkbox class="mg-r-xs" v-model="pwdKeeper"></el-checkbox>
+            <a-checkbox class="mg-r-xs" v-model="pwdKeeper"></a-checkbox>
             <span @click="keepPwd">记住我</span>
           </div>
-          <el-button class="login-btn mg-b-lg" type="primary" round :loading="form.login.loading" @click="loginHandle">
+          <a-button class="login-btn mg-b-lg" type="primary" round :loading="form.login.loading" @click="loginHandle">
             登录
-          </el-button>
+          </a-button>
         </div>
       </div>
     </div>
@@ -75,6 +75,6 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-@import "src/views/login/login";
+<style lang="less" scoped>
+@import "./login";
 </style>
