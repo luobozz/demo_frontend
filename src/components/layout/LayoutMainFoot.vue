@@ -1,10 +1,11 @@
 <template>
   <div class="layout-main-foot flex column al-ct jc-ct">
     <div class="copyright">
+      Copyright
+      <lb-icon type="fa-copyright"/>
+      2022
       <a href="https://github.com/luobozz/demo_frontend" rel="noreferrer"
          target="_blank"> {{ system.name }} </a>
-      <lb-icon type="fa-copyright"/>
-      2022 - 版权所有
     </div>
   </div>
 </template>
@@ -14,7 +15,7 @@ import systemMixin from "@/mixin/section/system.mixin";
 
 export default {
   name: "LayoutMainFoot",
-  mixins:[systemMixin]
+  mixins: [systemMixin]
 }
 </script>
 

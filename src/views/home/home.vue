@@ -1,9 +1,9 @@
 <template>
   <div class="content">
     <a-layout>
-      <a-layout-sider :class="{'collapse':layout.menuCollapse}">
+      <div :class="{'layout-sider':true,'collapse':layout.menuCollapse}">
         <layout-menu/>
-      </a-layout-sider>
+      </div>
       <a-layout :class="{'collapse':layout.menuCollapse}">
         <layout-main/>
       </a-layout>

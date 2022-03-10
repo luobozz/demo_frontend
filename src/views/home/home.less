@@ -1,11 +1,11 @@
 .media-mobile{
   .ant-layout{
-    .ant-layout-sider{
+    .layout-sider{
       position: fixed;
       display: block;
     }
 
-    .ant-layout-sider.collapse{
+    .layout-sider.collapse{
       display: none;
     }
 
@@ -18,7 +18,8 @@
 }
 .ant-layout{
   height: 100%;
-  .ant-layout-sider{
+  flex-direction: row;
+  .layout-sider{
     box-shadow: 2px 0 8px #1d23290d;
     width: @menu-width !important;
     max-width: @menu-width !important;
@@ -27,7 +28,7 @@
     height: 100%;
   }
 
-  .ant-layout-sider.collapse{
+  .layout-sider.collapse{
     width:@menu-collapse-width !important;
     max-width: @menu-collapse-width !important;
     min-width: @menu-collapse-width !important;

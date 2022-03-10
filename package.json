@@ -9,7 +9,7 @@
     "fix-memory-limit": "cross-env LIMIT=4096 increase-memory-limit"
   },
   "dependencies": {
-    "ant-design-vue": "^1.5.0",
+    "ant-design-vue": "^1.7.8",
     "axios": "^0.26.0",
     "core-js": "^3.6.5",
     "lodash": "^4.17.21",

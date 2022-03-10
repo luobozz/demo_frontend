@@ -60,7 +60,7 @@ export default {
 
 <style lang="less" scoped>
 .layout-card {
-  background-color: @background-color-base-f;
+  background-color: @background-color-card;
   position: relative;
   padding:0 @padding-lg @padding-lg @padding-lg;
   transition: .3s;
@@ -74,10 +74,10 @@ export default {
   }
 
   .header {
-    padding: @padding-lg 0;
+    padding: @padding-md 0;
     .title {
-      background-color: @background-color-base-f;
-      font-size: @heading-1-size;
+      background-color: @background-color-card;
+      font-size: @heading-5-size;
     }
 
     .title-btn {
@@ -90,6 +90,6 @@ export default {
 }
 
 .layout-card:not(:last-child) {
-  margin-bottom: @padding-lg;
+  margin-bottom: @padding-md;
 }
 </style>

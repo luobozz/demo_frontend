@@ -3,36 +3,36 @@
     <div class="system-name flex al-ct jc-ct no-shrink">
       <div v-show="!layout.menuCollapse">{{ system.name }}</div>
     </div>
-    <div class="menu scroll">
+    <div class="menu scroll y hover-type">
       <a-menu
-          class="scroll hover-type"
+          class=""
           mode="inline"
-          :collapse="layout.menuCollapse"
-          >
-        <a-submenu index="1">
-          <template slot="title">
-            <i class="el-icon-menu"></i>
-            <span slot="title">导航一</span>
-          </template>
-          <a-menu-item index="1-1">选项1</a-menu-item>
-          <a-menu-item index="1-2">选项2</a-menu-item>
-        </a-submenu>
-        <a-menu-item index="2">
-          <i class="el-icon-menu"></i>
-          <span slot="title">导航二</span>
+          :inline-collapsed="layout.menuCollapse"
+      >
+        <a-menu-item key="1">
+          <div class="menu-content">
+            <lb-icon class="mg-r-sm" type="fa-qq"/>
+            <span class="title">Option 1</span>
+          </div>
         </a-menu-item>
-        <a-menu-item index="3">
-          <i class="el-icon-document"></i>
-          <span slot="title">导航三</span>
-        </a-menu-item>
-        <a-menu-item index="4">
-          <i class="el-icon-setting"></i>
-          <span slot="title">导航四</span>
-        </a-menu-item>
+        <a-sub-menu key="sub2">
+          <div slot="title">
+            <div class="menu-content">
+              <lb-icon class="mg-r-sm" type="fa-qq"/>
+              <span class="title">Option 1</span>
+            </div>
+          </div>
+          <a-menu-item key="9">
+            <div class="menu-content">
+              <lb-icon class="mg-r-sm" type="fa-qq"/>
+              <span class="title">Option 1</span>
+            </div>
+          </a-menu-item>
+        </a-sub-menu>
       </a-menu>
     </div>
     <div class="collapse flex al-ct jc-ct" @click="menuCollapse" v-show="isSuitMedia('mobile')">
-      <lb-icon :type="layout.menuCollapse?'el-icon-s-unfold':'el-icon-s-fold'"></lb-icon>
+      <lb-icon :type="layout.menuCollapse?'if-icon-dedent':'if-icon-indent'"></lb-icon>
     </div>
   </div>
 </template>
@@ -53,7 +53,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
-@collapse-height: 50px;
+@collapse-height: 40px;
 
 .media-mobile {
   .menu {
@@ -86,21 +86,72 @@ export default {
   .menu {
     height: calc(100% - @head-top-height);
 
-    .el-menu {
-      border-right: none;
+    .ant-menu {
+      background: inherit !important;
 
-      .el-menu-item, /deep/ .el-submenu__title {
-        height: 45px;
-        line-height: 45px;
+      /deep/ * {
+        background: inherit !important;
       }
 
+      .ant-menu-item, /deep/ .ant-menu-submenu-title {
+        .menu-content {
+          display: flex;
+          align-items: center;
+          z-index: 2;
+
+          .lb-icon {
+            font-size: 120%;
+          }
+        }
+      }
+
+      .ant-menu-item-selected::after {
+        z-index: 1;
+        content: "";
+        background-color: @primary-color-select-bg;
+        position: absolute;
+        left: 8px;
+        right: 8px;
+        top: 0;
+        bottom: 0;
+        pointer-events: none;
+        border-radius: @border-radius-base;
+        //transition: background-color .3s var(--n-bezier);
+        border-right: none;
+      }
+    }
+
+    .ant-menu-inline-collapsed {
+      width: @menu-collapse-width !important;
+
+      .ant-menu-item, /deep/ .ant-menu-submenu-title {
+        text-align: center;
+        padding: 0 !important;
+        width: @menu-collapse-width !important;
+        //height: @menu-collapse-width !important;
+
+        .menu-content {
+          width: @menu-collapse-width;
+          height: 40px;
+          justify-content: center;
+
+          .lb-icon {
+            margin-right: 0 !important;
+          }
+        }
+
+        .title {
+          display: none !important;
+        }
+      }
     }
   }
 
   .collapse {
     height: 0;
-    font-size: 150%;
+    font-size: 110%;
     border-top: 1px solid @border-color-base;
   }
+
 }
 </style>

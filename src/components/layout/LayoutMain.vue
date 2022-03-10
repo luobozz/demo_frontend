@@ -14,54 +14,57 @@ import layoutMixin from "@/mixin/section/layout.mixin";
 
 export default {
   name: "LayoutMain",
-  mixins:[layoutMixin],
-  components:{
-    "layout-main-head":LayoutMainHead,
-    "layout-main-body":LayoutMainBody,
-    "layout-main-foot":LayoutMainFoot
+  mixins: [layoutMixin],
+  components: {
+    "layout-main-head": LayoutMainHead,
+    "layout-main-body": LayoutMainBody,
+    "layout-main-foot": LayoutMainFoot
   }
 }
 </script>
 
 <style lang="less" scoped>
 
-.media-mobile{
+.media-mobile {
 
-  &>*{
-    width: 100%;
-    min-width: @media-min-width-mobile !important;
-  }
+  .layout-main {
+    & > * {
+      width: 100%;
+      min-width: @media-min-width-mobile !important;
+    }
 
-  .layout-main-head{
-    width: 100% !important;
-    left: 0 !important;
-    min-width: @media-min-width-mobile !important;
-  }
-  .layout-main-body{
-    padding: @padding-sm;
+    .layout-main-head {
+      width: 100% !important;
+      left: 0 !important;
+      min-width: @media-min-width-mobile !important;
+    }
+
+    .layout-main-body {
+      padding: @padding-sm;
+    }
   }
 }
 
-.layout-main.collapse{
-  .layout-main-head{
+.layout-main.collapse {
+  .layout-main-head {
     //padding-left: @menu-collapse-width;
     left: @menu-collapse-width;
     width: @main-collapse-width;
   }
 }
 
-.layout-main{
+.layout-main {
   position: relative;
   width: 100%;
-  height: 100%;
-  padding-top: @head-height;
+  height: calc(100% - @head-height);
+  margin-top: @head-height;
 
-  &>*{
+  & > * {
     width: 100%;
     min-width: @media-min-width-pc;
   }
 
-  .layout-main-head{
+  .layout-main-head {
     position: fixed;
     top: 0;
     left: @menu-width;
@@ -72,13 +75,13 @@ export default {
     z-index: 2;
   }
 
-  .layout-main-body{
+  .layout-main-body {
     padding-top: @head-height;
     min-height: @body-height;
     padding: @padding-md;
   }
 
-  .layout-main-foot{
+  .layout-main-foot {
     height: @foot-height;
   }
 }

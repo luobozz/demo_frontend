@@ -18,6 +18,9 @@
     <layout-card title="关于">
       Luobo前端demo
     </layout-card>
+    <layout-card title="关于">
+      Luobo前端demo
+    </layout-card>
   </div>
 </template>
 

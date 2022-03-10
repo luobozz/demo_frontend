@@ -1,7 +1,5 @@
 <template>
-  <i v-if="type.indexOf('el')>-1" :class="[typeClass]" :style="{color:color,'font-size':fontSize}"
-     @click="onClick()"></i>
-  <div v-else-if="type.indexOf('svg')==-1" :class="[typeClass]" :style="{color:color,'font-size':fontSize}"
+  <div v-if="type.indexOf('svg')==-1" :class="[typeClass]" :style="{color:color,'font-size':fontSize}"
        @click="onClick()"></div>
   <svg v-else-if="type.indexOf('svg')>-1" :class="[typeClass]" aria-hidden="true" :style="{'font-size':fontSize}">
     <use :xlink:href="getIcon"></use>
@@ -46,8 +44,6 @@ export default {
         return `lb-icon iconfont ${this.type.replace(/if-/, '')}`
       } else if (this.type.indexOf('svg') != -1) {
         return `lb-icon icon`
-      } else if (this.type.indexOf('el') != -1) {
-        return `lb-icon ${this.type}`
       } else {
         return `lb-icon fa fa-exclamation-circle`
       }
@@ -72,11 +68,4 @@ export default {
   fill: currentColor;
   overflow: hidden;
 }
-
-/*增加 */
-.ant-menu-item .lb-icon, .ant-menu-submenu-title .lb-icon, .ant-dropdown-menu-item .lb-icon {
-  min-width: 14px;
-  margin-right: 10px;
-}
-
 </style>
