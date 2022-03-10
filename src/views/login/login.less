@@ -2,7 +2,7 @@
   .login-box {
     width: 100% !important;
     height: 100% !important;
-    min-width: @media-min-width;
+    min-width: @media-min-width-mobile;
     border-radius: 0 !important;
     margin-bottom: 0 !important;
   }
@@ -38,7 +38,7 @@
         }
 
         .title {
-          font-size: @heading-2-size;
+          font-size: 245%;
         }
       }
 
@@ -58,7 +58,15 @@
             color: @text-color-secondary;
           }
 
-          /deep/ .ant-form-explain{
+          /deep/ .ant-form-item{
+            margin-bottom: 19px;
+          }
+
+          /deep/ .ant-form-item-with-help {
+            margin-bottom: 0;
+          }
+
+          /deep/ .ant-form-explain {
             font-size: 80% !important;
           }
 
@@ -75,7 +83,7 @@
             margin-bottom: @padding-xs;
           }
 
-          /deep/ input:focus{
+          /deep/ input:focus {
             border: none;
             box-shadow: none;
           }

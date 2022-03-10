@@ -1,5 +1,5 @@
 <template>
-  <div :class="{'layout-main':true,'collapse':layout.menuCollapse}">
+  <div :class="{'layout-main scroll':true,'collapse':layout.menuCollapse}">
     <layout-main-head></layout-main-head>
     <layout-main-body></layout-main-body>
     <layout-main-foot></layout-main-foot>
@@ -26,18 +26,26 @@ export default {
 <style lang="less" scoped>
 
 .media-mobile{
+
+  &>*{
+    width: 100%;
+    min-width: @media-min-width-mobile !important;
+  }
+
   .layout-main-head{
     width: 100% !important;
-    min-width: @media-min-width;
-    left:0;
+    left: 0 !important;
+    min-width: @media-min-width-mobile !important;
   }
   .layout-main-body{
-    padding: @head-height+@padding-md @padding-sm @padding-md @padding-sm !important;
+    padding: @padding-sm;
   }
 }
 
 .layout-main.collapse{
   .layout-main-head{
+    //padding-left: @menu-collapse-width;
+    left: @menu-collapse-width;
     width: @main-collapse-width;
   }
 }
@@ -46,17 +54,20 @@ export default {
   position: relative;
   width: 100%;
   height: 100%;
+  padding-top: @head-height;
 
   &>*{
     width: 100%;
+    min-width: @media-min-width-pc;
   }
 
   .layout-main-head{
     position: fixed;
     top: 0;
-    right: 0;
+    left: @menu-width;
     width: @main-width;
     height: @head-height;
+    min-width: @media-min-width-pc;
     background-color: @background-color-menu;
     z-index: 2;
   }
@@ -64,7 +75,7 @@ export default {
   .layout-main-body{
     padding-top: @head-height;
     min-height: @body-height;
-    padding: @head-height+@padding-md @padding-md @padding-md @padding-md;
+    padding: @padding-md;
   }
 
   .layout-main-foot{

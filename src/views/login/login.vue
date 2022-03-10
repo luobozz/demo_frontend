@@ -2,12 +2,12 @@
   <div class="content">
     <div class="login-box">
       <div class="login">
-        <div class="head mg-b-lg flex jc-sb al-fe text-bd">
-          <div class="slogan" v-show="isSuitMedia('pc')">欢迎使用!</div>
+        <div class="head mg-b-md flex jc-sb al-fe text-bd">
+          <div class="slogan mg-b-xs" v-show="isSuitMedia('pc')">欢迎使用!</div>
           <div class="title al-end">{{ system.name }}</div>
         </div>
         <div class="main">
-          <div class="tabs flex mg-b-lg mg-t-md">
+          <div class="tabs flex mg-b-lg mg-t-sm">
             <div class="tab pd-b-min active">登录账户</div>
           </div>
           <a-form-model
@@ -28,11 +28,12 @@
             </div>
           </a-form-model>
 
-          <div :class="{'remember-password cur-pointer flex al-ct  mg-b-max':true,'keep-pwd':pwdKeeper}">
+          <div :class="{'remember-password cur-pointer flex al-ct  mg-b-lg':true,'keep-pwd':pwdKeeper}">
             <a-checkbox class="mg-r-xs" v-model="pwdKeeper"></a-checkbox>
             <span @click="keepPwd">记住我</span>
           </div>
-          <a-button class="login-btn mg-b-lg" type="primary" shape="round" size="large" :loading="form.login.loading" @click="loginHandle">
+          <a-button class="login-btn mg-b-lg  mg-t-md" type="primary" shape="round" size="large" :loading="form.login.loading"
+                    @click="loginHandle">
             登录
           </a-button>
         </div>

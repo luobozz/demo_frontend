@@ -1,12 +1,14 @@
 <template>
   <div :class="{'layout-menu':true,'collapse':layout.menuCollapse}">
-    <div class="system-name flex al-ct jc-ct">
+    <div class="system-name flex al-ct jc-ct no-shrink">
       <div v-show="!layout.menuCollapse">{{ system.name }}</div>
     </div>
     <div class="menu scroll">
       <a-menu
+          class="scroll hover-type"
+          mode="inline"
           :collapse="layout.menuCollapse"
-          :collapse-transition="false">
+          >
         <a-submenu index="1">
           <template slot="title">
             <i class="el-icon-menu"></i>

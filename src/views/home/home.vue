@@ -1,13 +1,13 @@
 <template>
   <div class="content">
-    <a-container>
-      <a-aside :class="{'collapse':layout.menuCollapse}">
+    <a-layout>
+      <a-layout-sider :class="{'collapse':layout.menuCollapse}">
         <layout-menu/>
-      </a-aside>
-      <a-container :class="{'collapse':layout.menuCollapse}">
+      </a-layout-sider>
+      <a-layout :class="{'collapse':layout.menuCollapse}">
         <layout-main/>
-      </a-container>
-    </a-container>
+      </a-layout>
+    </a-layout>
   </div>
 </template>
 

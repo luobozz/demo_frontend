@@ -1,12 +1,16 @@
 
 .scroll {
-  overflow-y: auto !important;
-  overflow-x: hidden !important;
+  overflow: scroll !important;
 }
 
 .scroll.x {
   overflow-y: hidden !important;
   overflow-x: auto !important;
+}
+
+.scroll.y {
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
 }
 
 .scroll.hover-type {
@@ -19,7 +23,7 @@
 
 .scroll::-webkit-scrollbar {
   width: 5px;
-  height: 1px;
+  height: 5px;
 }
 
 .scroll::-webkit-scrollbar-thumb {
@@ -28,6 +32,6 @@
 
 
 .scroll.x::-webkit-scrollbar {
-  width: 1px;
-  height: 4px;
+  width: 5px;
+  height: 5px;
 }
