@@ -34,7 +34,7 @@
           </div>
           <a-button class="login-btn mg-b-lg  mg-t-md" type="primary" shape="round" size="large" :loading="form.login.loading"
                     @click="loginHandle">
-            登录
+             登录
           </a-button>
         </div>
       </div>

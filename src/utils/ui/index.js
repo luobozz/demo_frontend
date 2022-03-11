@@ -21,7 +21,8 @@ const _this = {
         }
         const cp = componentParamsTransHandle(opt), ct = opt.type || "info", timerKeys = `toast_${ct}_${cp.message}`,
             ch = componentHandle[opt.type || "info"]
-        throttler().throttle(timerKeys, ch, cp.message, cp.duration, opt.onclose)
+        //0.8秒内同toast节流
+        throttler(800).throttle(timerKeys, ch, cp.message, cp.duration, opt.onclose)
 
     },
     notification(opt) {

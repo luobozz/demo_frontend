@@ -30,7 +30,7 @@ const _ = (times) => {
                 }, throttleTimes)
                 return false
             } else {
-                console.error(`[throttle] keys: '${keys}'`)
+                console.warn(`[throttle] keys: '${keys}'`)
                 return true
             }
         },

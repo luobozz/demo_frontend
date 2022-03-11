@@ -41,8 +41,8 @@ export default {
                 }
             } else {
                 if (!(custom?.noToast?.all || custom?.noToast?.error)) {
-                    exception.toastError(`${res.code}:${res.message}`, custom?.noToast);
-                }else {
+                    exception.toastError(`${res.code}:${res.message}`, false);
+                } else {
                     exception.silentError(`${res.code}:${res.message}`)
                 }
                 reject(res)

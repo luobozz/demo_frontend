@@ -38,7 +38,7 @@ export default {
                 profileResource,
                 role
             } = api.main.auth
-            return Promise.all([login()]).then(r => {
+            return Promise.all([login(),profileResource(),role()]).then(r => {
                 console.log(login)
 
             })

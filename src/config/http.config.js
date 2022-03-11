@@ -4,13 +4,13 @@
 const getUrl = () => {
     const processUrl = {
         development: {
-            apiUrl: 'http://119.3.108.48:8001/',
+            apiUrl: 'http://122.112.142.111',
         },
         test: {
-            apiUrl: 'http://119.3.108.48:8001/',
+            apiUrl: 'http://119.3.108.48:8001',
         },
         production: {
-            apiUrl: 'http://119.3.108.48:8001/',
+            apiUrl: 'http://119.3.108.48:8001',
         },
     }
 

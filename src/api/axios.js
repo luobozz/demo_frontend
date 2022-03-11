@@ -12,7 +12,7 @@ let service = axios.create({
         'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
         "Accept": "*/*"
     },
-    timeout: 1
+    timeout: 8000
 })
 
 const checkParams=(params)=>{

@@ -8,6 +8,7 @@ import lodash from "lodash";
 const initCustom = (custom, url, type) => {
     const defaultCustom = {
         throttle: true,
+        throttleTimes: 200,
         noProcess: false,
         noToast: {
             all: false,
@@ -19,6 +20,7 @@ const initCustom = (custom, url, type) => {
         url: url,
         type: type,
         throttle: custom?.throttle ? custom.throttle : defaultCustom.throttle,
+        throttleTimes: custom?.throttleTimes ? custom.throttleTimes : defaultCustom.throttleTimes,
         noProcess: custom?.noProcess ? custom.noProcess : defaultCustom.noProcess,
         noToast: custom?.noToast ? custom.noToast : defaultCustom.noToast
     }
@@ -28,9 +30,10 @@ const customBefore = (custom) => {
     return new Promise((resolve, reject) => {
         if (custom.throttle) {
             //节流处理
-            if (throttler().throttle(`api_${custom.type}_${custom.url}`)) {
+            if (throttler(custom.throttleTimes).throttle(`api_${custom.type}_${custom.url}`)) {
                 //被节流
                 reject(`请求节流，您点击的太快啦`)
+                exception.toastError(`请求节流，您点击的太快啦`, true);
             } else {
                 //没被节流
                 resolve()
@@ -55,7 +58,7 @@ const customAfter = (axiosTh, custom) => {
                     reject(e)
                 })
             }).catch((error) => {
-                exception.toastError(`网络错误`);
+                exception.toastError(`网络错误`, true);
                 reject(error)
             })
         })
@@ -74,7 +77,17 @@ export default {
             options.responseType = responseType
         }
         custom = initCustom(custom, url, "get")
-        return customAfter(axios().get(url, options), custom)
+        return new Promise((resolve, reject) => {
+            customBefore(custom).then(r => {
+                customAfter(axios().get(url, options), custom).then(r => {
+                    resolve(r)
+                }).catch(e => {
+                    reject(e)
+                })
+            }).catch(e => {
+                reject(e)
+            })
+        })
     },
     post(url, headers, data, custom) {
         let options = {}
@@ -82,7 +95,7 @@ export default {
             options.headers = headers
         }
         custom = initCustom(custom, url, "post")
-        return customAfter(axios.post(url, data, options), custom)
+        return instance(axios().post(url, data, options), custom)
     },
     put(url, headers, data, custom) {
         let options = {}
@@ -90,7 +103,7 @@ export default {
             options.headers = headers
         }
         custom = initCustom(custom, url, "put")
-        return customAfter(axios().put(url, data, options), custom)
+        return instance(axios().put(url, data, options), custom)
     },
     delete(url, headers, data, custom) {
         let options = {}
@@ -99,6 +112,6 @@ export default {
             options.headers = headers
         }
         custom = initCustom(custom, url, "delete")
-        return customAfter(axios().delete(url, options), custom)
+        return instance(axios().delete(url, options), custom)
     }
 }
