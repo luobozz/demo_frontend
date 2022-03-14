@@ -1,7 +1,7 @@
 import message from "ant-design-vue/lib/message";
 
 import(`ant-design-vue/lib/message/style`)
-import throttler from "@/utils/data/throttler"
+import {throttler} from "@/utils/data/throttler"
 
 
 const _this = {

@@ -25,28 +25,37 @@ export default {
     },
     resultHandle(res, custom) {
         return new Promise((resolve, reject) => {
-            if (res.code == 200 || res.code == 404) {
-                const type = res.code == 200 ? "success" : "warning"
-                resolve(res);
-                if (!(custom?.noToast?.all || custom?.noToast.success)) {
-                    uiUtils.toast({
-                        type: type,
-                        message: res.message
-                    })
-                }
-            } else if (res.code == 413) {
-                if (store.getters.isLogin) {
-                    exception.toastError(`${res.message}`);
-                    store.dispatch("logout", {})
-                }
-            } else {
-                if (!(custom?.noToast?.all || custom?.noToast?.error)) {
-                    exception.toastError(`${res.code}:${res.message}`, false);
-                } else {
-                    exception.silentError(`${res.code}:${res.message}`)
-                }
-                reject(res)
+            const statusHandle={
+                403:()=>{},
+                401:()=>{},
+                500:()=>{},
+                400:()=>{},
+                default:()=>{}
             }
+            const f=statusHandle[res.status]||statusHandle.default
+            console.log(f)
+            // if (res.code == 200 || res.code == 404) {
+            //     const type = res.code == 200 ? "success" : "warning"
+            //     resolve(res);
+            //     if (!(custom?.noToast?.all || custom?.noToast.success)) {
+            //         uiUtils.toast({
+            //             type: type,
+            //             message: res.message
+            //         })
+            //     }
+            // } else if (res.code == 413) {
+            //     if (store.getters.isLogin) {
+            //         exception.toastError(`${res.message}`);
+            //         store.dispatch("logout", {})
+            //     }
+            // } else {
+            //     if (!(custom?.noToast?.all || custom?.noToast?.error)) {
+            //         exception.toastError(`${res.code}:${res.message}`, false);
+            //     } else {
+            //         exception.silentError(`${res.code}:${res.message}`)
+            //     }
+            //     reject(res)
+            // }
         })
     },
     getSystemHeader() {

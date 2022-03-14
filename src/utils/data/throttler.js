@@ -1,13 +1,29 @@
 const throttleTimer = {}, defaultThrottleTimes = 200
 
 /**
+ * 节流器工具集
+ * @type {{throttleQuit(*): void}}
+ */
+export const throttlerTools = {
+    /**
+     * 主动退出节流方法，在异步线程里可以主动退出不等待
+     * @param keys
+     */
+    throttleQuit(keys) {
+        if (Object.prototype.hasOwnProperty.call(throttleTimer, keys)) {
+            delete throttleTimer[keys]
+        }
+    }
+}
+
+/**
  * 节流器
  *
  * @param times 可传入节流器节流时间或者默认
  * @returns {boolean|{throttle(*, *, ...[*]): boolean}}
  * @private
  */
-const _ = (times) => {
+export const throttler = (times) => {
     const throttleTimes = times || defaultThrottleTimes
     return {
         /**
@@ -26,7 +42,7 @@ const _ = (times) => {
                     cb(...params)
                 })()
                 setTimeout(() => {
-                    delete throttleTimer[keys]
+                    throttlerTools.throttleQuit(keys)
                 }, throttleTimes)
                 return false
             } else {
@@ -37,4 +53,7 @@ const _ = (times) => {
     }
 }
 
-export default _;
+// export default {
+//     throttler,
+//     throttlerTools
+// };

@@ -4,7 +4,8 @@
 const getUrl = () => {
     const processUrl = {
         development: {
-            apiUrl: 'http://122.112.142.111',
+            // apiUrl: 'http://122.112.142.111/s/edu/',
+            apiUrl: 'http://localhost:3000',
         },
         test: {
             apiUrl: 'http://119.3.108.48:8001',
@@ -23,9 +24,8 @@ export default {
     responseMessage: {
         code: 0,
         msg: '',
-        data: [],
-        total: 0,
-        timestamp: new Date().getTime()
+        data: null,
+        succeed: true
     },
     header: {
         ACCESS_TOKEN: "ACCESS_TOKEN",

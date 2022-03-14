@@ -1,9 +1,13 @@
 import axios from './axios'
 import apiUtil from "@/utils/api"
 import exception from "@/utils/exception";
-import throttler from "@/utils/data/throttler"
+import {throttler, throttlerTools} from "@/utils/data/throttler"
 import lodash from "lodash";
 
+
+const getThrottleKey = (custom) => {
+    return `api_${custom.type}_${custom.url}`
+}
 
 const initCustom = (custom, url, type) => {
     const defaultCustom = {
@@ -30,7 +34,7 @@ const customBefore = (custom) => {
     return new Promise((resolve, reject) => {
         if (custom.throttle) {
             //节流处理
-            if (throttler(custom.throttleTimes).throttle(`api_${custom.type}_${custom.url}`)) {
+            if (throttler(custom.throttleTimes).throttle(getThrottleKey(custom))) {
                 //被节流
                 reject(`请求节流，您点击的太快啦`)
                 exception.toastError(`请求节流，您点击的太快啦`, true);
@@ -50,16 +54,16 @@ const customAfter = (axiosTh, custom) => {
         return axiosTh;
     } else {
         return new Promise((resolve, reject) => {
-            axiosTh.then(response => {
-                const res = response.data
-                apiUtil.resultHandle(res, custom).then(res => {
-                    resolve(res)
+            axiosTh.then(r => {
+                const response = r.response || r
+                apiUtil.resultHandle(response, custom).then(r => {
+                    resolve(r)
                 }).catch(e => {
                     reject(e)
                 })
-            }).catch((error) => {
-                exception.toastError(`网络错误`, true);
-                reject(error)
+            }).finally(f => {
+                // alert("quit")
+                throttlerTools.throttleQuit(getThrottleKey(custom))
             })
         })
     }

@@ -6,7 +6,9 @@
     "serve": "vue-cli-service serve --mode development",
     "build": "vue-cli-service build --mode production",
     "lint": "vue-cli-service lint",
-    "fix-memory-limit": "cross-env LIMIT=4096 increase-memory-limit"
+    "fix-memory-limit": "cross-env LIMIT=4096 increase-memory-limit",
+    "tservice": "node ./mock/testService.js",
+    "commit": "cz"
   },
   "dependencies": {
     "ant-design-vue": "^1.7.8",
@@ -15,6 +17,7 @@
     "lodash": "^4.17.21",
     "mockjs": "^1.1.0",
     "moment": "^2.29.1",
+    "qs": "^6.10.3",
     "vue": "^2.6.11",
     "vue-router": "^3.2.0",
     "vuex": "^3.4.0",
@@ -27,15 +30,24 @@
     "@vue/cli-plugin-vuex": "~4.5.13",
     "@vue/cli-service": "~4.5.13",
     "babel-eslint": "^10.1.0",
+    "commitizen": "^4.2.4",
     "cross-env": "^5.0.5",
+    "cz-conventional-changelog": "^3.3.0",
+    "cz-customizable": "^6.3.0",
     "element-theme-chalk": "^2.15.6",
     "element-themex": "^1.0.3",
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^6.2.2",
+    "express": "4.17.3",
     "increase-memory-limit": "^1.0.3",
     "less": "^3.0.4",
     "less-loader": "^5.0.0",
     "style-resources-loader": "^1.3.3",
     "vue-template-compiler": "^2.6.11"
+  },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-customizable"
+    }
   }
 }

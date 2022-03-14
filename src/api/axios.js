@@ -12,7 +12,7 @@ let service = axios.create({
         'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
         "Accept": "*/*"
     },
-    timeout: 8000
+    timeout: 2000
 })
 
 const checkParams=(params)=>{
@@ -66,8 +66,10 @@ service.interceptors.response.use(
         return response;
     },
     (error) => {
-        const msg = error.response?.statusText || '网络错误';
-        throw new Error(msg)
+        // console.log(error.response)
+        // const msg = error.response?.statusText || '网络错误';
+        // throw new Error(msg)
+        return error
     }
 )
 
