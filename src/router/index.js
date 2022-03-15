@@ -5,7 +5,7 @@ import NProgress from 'nprogress'
 NProgress.configure({showSpinner: false})
 import '@/assets/css/nprogress.less'
 import store from '../store'
-import {constantRouter} from "@/config/routes.config"
+import {constantRouter, asyncRouter} from "@/config/routes.config"
 import exception from "@/utils/exception";
 import routerUtil from "./util"
 
@@ -16,14 +16,13 @@ VueRouter.prototype.resetRoute = function resetRoute() {
 }
 
 VueRouter.prototype.getParams = function getParams() {
-    // this.matcher = createRouter().matcher
-    console.log(this.matcher.match())
+    return Object.assign({}, this.currentRoute.params, this.currentRoute.query)
 }
 
 export const createRouter = () => new VueRouter({
     mode: 'history',
     base: process.env.BASE_URL,
-    routes: constantRouter
+    routes: constantRouter.concat(asyncRouter)
 })
 
 const router = createRouter(), constantRouterName = constantRouter.map(p => p.name);
@@ -31,14 +30,13 @@ const router = createRouter(), constantRouterName = constantRouter.map(p => p.na
 router.beforeEach((to, from, next) => {
     NProgress.start()
     // next()
+    // console.log(from.name, to.name, store.getters.isLogin, router.getRoutes())
     if (store.getters.isLogin) {
-        routerUtil.addHome(router);
         if (constantRouterName.indexOf(to.name) > -1) {
             if (to.name === "login") {
-                console.log("login", router.getRoutes())
                 next({name: routerUtil.homeName})
             } else {
-                next()
+                return next()
             }
         } else {
             //review 权限更新策略
@@ -47,8 +45,7 @@ router.beforeEach((to, from, next) => {
                     next({path: to.path})
                 }).catch(e => {
                     exception.toastError("权限获取,错误重新登录尝试")
-                    //TODO 然后去到500页面给手动退出登录
-                    router.push({name: '500', params: {}})
+                    next({path: '/500', query: {pattern: "logout"}})
                 });
             } else {
                 next();

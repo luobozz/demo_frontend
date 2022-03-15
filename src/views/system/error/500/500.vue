@@ -14,7 +14,7 @@
     import methods from "./500";
 
     export default {
-        name: "error404",
+        name: "error500",
         data() {
             return {
               currentPatternIndex:"default",
@@ -23,12 +23,14 @@
                   title:"出错了",
                   btns:[]
                 },
-                quit:{
+                logout:{
                   title:"",
                   btns:[
                     {
                       title:"返回登录",
-                      handle:()=>{}
+                      handle:()=>{
+                        this.logout()
+                      }
                     }
                   ]
                 }
@@ -36,7 +38,8 @@
             }
         },
         created() {
-          console.log(this.$router.getParams())
+          // console.log(this.$route)
+          this.currentPatternIndex=this.$router.getParams().pattern||"default"
         },
         computed: {
           currentPattern(){

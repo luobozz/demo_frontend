@@ -10,6 +10,7 @@ const methods = {
             v && (() => {
                 this.form.login.loading = true
                 this.login().then(r => {
+                    // console.log("gohome")
                     this.$router.push({name: 'home', params: {}})
                 }).catch(e => {
                     this.$exceptionUtils.toastError("登录失败", true);
