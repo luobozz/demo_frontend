@@ -1,7 +1,7 @@
 module.exports = {
     types: [
-        { value: 'feat', name: 'feat:     新增功能' },
         { value: 'wip', name: 'wip:     工作中的缓存提交' },
+        { value: 'feat', name: 'feat:     新增功能' },
         { value: 'fix', name: 'fix:      修复bug' },
         { value: 'docs', name: 'docs:     文档变更' },
         { value: 'style', name: 'style:    代码格式（不影响功能，例如空格、分号等格式修正）' },
