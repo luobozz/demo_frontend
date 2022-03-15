@@ -19,3 +19,9 @@
 - [ ] 添加CZ
 - [ ] 响应式处理
 - [ ] 标签页
+
+## 参考&感谢
+[soybean-admin](https://github.com/honghuangdc/soybean-admin)
+
+## License
+[MIT © luobo-2022](https://github.com/luobozz/demo_frontend/blob/main/LICENSE)
