@@ -29,5 +29,5 @@ Mock.XHR.prototype.send = (() => {
 })()
 
 Mock.setup({
-    timeout: 800 // setter delay time
+    timeout: "10-100"
 })

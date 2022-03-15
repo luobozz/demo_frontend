@@ -16,7 +16,7 @@ export default {
             console.error(`error:${msg}`)
         }
         uiUtils.toast({
-            type: "warning",
+            type: "error",
             message: msg
         })
     }

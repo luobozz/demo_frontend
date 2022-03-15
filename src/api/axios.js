@@ -1,10 +1,7 @@
 import axios from 'axios'
 import qs from 'qs'
-import lodash from 'lodash'
 import store from '../store'
 import httpConfig from "../config/http.config"
-import router from "../router";
-import timer from "../utils/data/timer";
 import Moment from "moment";
 
 let service = axios.create({
@@ -12,7 +9,7 @@ let service = axios.create({
         'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
         "Accept": "*/*"
     },
-    timeout: 2000
+    timeout: 8000
 })
 
 const checkParams=(params)=>{
@@ -46,11 +43,7 @@ service.interceptors.request.use(
         }
 
         if(config.url.indexOf(httpConfig.url.apiUrl)>-1){
-            config.headers[httpConfig.header.ACCESS_ORIGIN] = router.currentRoute.name;
-            config.headers[httpConfig.header.ACCESS_TOKEN] = store.getters.token;
-            if(store.getters.isLogin&&config.url.indexOf("heartbeat")==-1){
-                timer.restartTimerByName(httpConfig.httpTimer.heartbeat.name);
-            }
+            config.headers[httpConfig.header.Authorization] = store.getters.token;
         }
         return config
     },

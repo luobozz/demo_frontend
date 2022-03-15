@@ -21,6 +21,9 @@ Vue.component('layout-card', layoutCard)
 import globalUtil from '@/config/global.util.config'
 Vue.use(globalUtil)
 
+import exception from "@/utils/exception"
+Vue.config.errorHandler = exception.silentError
+
 Vue.config.productionTip = false
 new Vue({
     router,

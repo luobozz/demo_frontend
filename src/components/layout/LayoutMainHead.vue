@@ -41,7 +41,7 @@
               <span>用户设置</span>
             </a-menu-item>
             <a-menu-divider/>
-            <a-menu-item class="flex">
+            <a-menu-item class="flex" @click="logoutHandle">
               <lb-icon class="mg-r-sm" type="if-icon-logout"></lb-icon>
               <span>退出登录</span>
             </a-menu-item>
@@ -60,11 +60,17 @@
 
 <script>
 import layoutMixin from "@/mixin/section/layout.mixin";
+import {mapActions} from "vuex";
 
 export default {
   name: "LayoutMainHead",
   mixins: [layoutMixin],
-  methods: {}
+  methods: {
+    ...mapActions(["logout"]),
+    logoutHandle(){
+      this.logout()
+    }
+  }
 }
 </script>
 

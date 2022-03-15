@@ -23,7 +23,7 @@ server.get('/auth/login', (request, response) => { //3
 });
 
 server.get('/auth/role', (request, response) => { //3
-    response.writeHead(401, 'Current password does not match', { 'content-type': 'text/plain' });
+    response.writeHead(500, 'Current password does not match', { 'content-type': 'text/plain' });
     response.end('Current value does not match');
 });
 

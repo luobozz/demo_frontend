@@ -28,8 +28,7 @@ export default {
         succeed: true
     },
     header: {
-        ACCESS_TOKEN: "ACCESS_TOKEN",
-        ACCESS_ORIGIN: "ACCESS_ORIGIN"
+        Authorization: "Authorization",
     },
     httpTimer: {
         heartbeat: {

@@ -5,6 +5,9 @@ export default {
     login(data, custom) {
         return axios.get(`${httpConfig.url.apiUrl}/auth/login`, {}, data, custom)
     },
+    logout(data, custom) {
+        return axios.get(`${httpConfig.url.apiUrl}/auth/logout`, {}, data, custom)
+    },
     loginSms(data, custom) {
         return axios.get(`${httpConfig.url.apiUrl}/auth/login/sms`, {}, data, custom)
     },

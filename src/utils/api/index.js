@@ -43,12 +43,12 @@ export default {
                 },
                 500: () => {
                     //状态码 500 统一提示 服务器异常，不输出msg
-                    return afterHandle(false, false, null)
+                    return afterHandle(false, true, "服务器异常")
                 },
                 200: () => {
                     //状态码 200 succeed:false 业务异常，直接输出msg
                     //状态码 200 succeed:true 成功，直接输出msg
-                    return afterHandle(resData.succeed || false, true, resData.msg || "业务异常")
+                    return afterHandle(resData.succeed || false, true, resData.msg || resData.succeed ? "" : "业务异常")
                 },
                 400: () => {
                     //状态码 400 参数解析异常 可以直接输出msg
@@ -71,53 +71,12 @@ export default {
                 resolve(resData)
             } else {
                 if (!(custom?.noToast?.all || custom?.noToast?.error) && fr.isToast) {
-                    exception.toastError(res, false);
+                    exception.toastError(fr.toastContent, false);
                 } else {
-                    exception.silentError(`${res.code}:${res.message}`)
+                    exception.silentError(fr.toastContent, null, fr.toastContent)
                 }
                 reject(res)
             }
-            console.log(f())
-            // if (res.code == 200 || res.code == 404) {
-            //     const type = res.code == 200 ? "success" : "warning"
-            //     resolve(res);
-            //     if (!(custom?.noToast?.all || custom?.noToast.success)) {
-            //         uiUtils.toast({
-            //             type: type,
-            //             message: res.message
-            //         })
-            //     }
-            // } else if (res.code == 413) {
-            //     if (store.getters.isLogin) {
-            //         exception.toastError(`${res.message}`);
-            //         store.dispatch("logout", {})
-            //     }
-            // } else {
-            //     if (!(custom?.noToast?.all || custom?.noToast?.error)) {
-            //         exception.toastError(`${res.code}:${res.message}`, false);
-            //     } else {
-            //         exception.silentError(`${res.code}:${res.message}`)
-            //     }
-            //     reject(res)
-            // }
         })
     },
-    getSystemHeader() {
-        let header = {};
-        header[httpConfig.header.ACCESS_ORIGIN] = router.currentRoute.name;
-        header[httpConfig.header.ACCESS_TOKEN] = store.getters.token;
-        return header;
-    },
-    ping(url) {
-        const pingUrl = url.startsWith("http://") ? url : `http://${url}`
-        axios.get(`${pingUrl}`, {}, {}, {noProcess: true}).then(p => {
-            uiUtils.toast({
-                type: "success",
-                message: `${url} 连接成功`
-            })
-        }).catch(err => {
-            exception.toastError(`连接失败,事由[${err}]`,false);
-        })
-    }
-
 }

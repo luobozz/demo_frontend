@@ -9,7 +9,11 @@ const methods = {
         this.$refs.loginForm?.validate(v => {
             v && (() => {
                 this.form.login.loading = true
-                this.login().finally(f => {
+                this.login().then(r => {
+                    this.$router.push({name: 'home', params: {}})
+                }).catch(e => {
+                    this.$exceptionUtils.toastError("登录失败", true);
+                }).finally(f => {
                     this.form.login.loading = false
                 })
             })()
