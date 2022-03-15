@@ -24,4 +24,4 @@
 [soybean-admin](https://github.com/honghuangdc/soybean-admin)
 
 ## License
-[MIT © luobo-2022](https://github.com/luobozz/demo_frontend/blob/main/LICENSE)
+[MIT Copyright (c) 2022 luobo](https://github.com/luobozz/demo_frontend/blob/main/LICENSE)
