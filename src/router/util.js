@@ -1,50 +1,35 @@
 /**
  * @author chenlingyu
  */
-import {homeName,asyncRouter} from "@/config/routes.config";
+import {homeName, asyncRouter} from "@/config/routes.config";
 import store from '../store'
-import exception from "@/utils/exception";
+import lodash from "lodash"
 
 const getHome = () => {
-    return asyncRouter[0]
+    return lodash.cloneDeep(asyncRouter[0])
 }
 
-const hasHome = (router) => {
-    let ret = false, routes = router.getRoutes();
-    for (let i = 0; i < routes.length; i++) {
-        if (routes[i].name === homeName) {
-            ret = true;
-            break;
-        }
-    }
-    return ret;
-}
+const traverseAddRoutes = (route, children) => {
 
-const traverseAddRoutes = (router, parentName, children) => {
-
-    children.forEach(p => {
-        router.addRoute(parentName, p);
+    route.children=[]
+    children.filter(fi => fi.type === 'route').forEach(p => {
+        route.children.push(p)
         if (p.subs.length > 0) {
-            traverseAddRoutes(router, p.name, p.subs)
+            traverseAddRoutes(p, p.subs)
         }
     })
+    return route
 }
 
 export default {
     homeName,
-    addHome: (router) => {
-        if (!hasHome(router)) {
-            router.addRoute(getHome())
-        }
-    },
-    getRoutes: (router) => {
+    getRoutes: () => {
         return new Promise((resolve, reject) => {
             store.dispatch("getRoutes").then((res) => {
                 if (store.getters.routes.length === 0) {
-                    reject("error")
+                    reject("获取到的权限为空")
                 } else {
-                    traverseAddRoutes(router, getHome().name, store.getters.routes);
-                    resolve("success")
+                    resolve(traverseAddRoutes(getHome(), store.getters.routes))
                 }
             }).catch((error) => {
                 reject(error);

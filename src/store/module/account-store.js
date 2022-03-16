@@ -1,6 +1,7 @@
 import api from "@/api/index"
 import lodash from "lodash";
 import router from "@/router";
+import exceptionUtils from "@/utils/exception/index"
 
 const defaultAccount = {
     //	用户id
@@ -24,6 +25,48 @@ const defaultAccount = {
     roleName: "",
     //菜单列表
     resource: [],
+}
+
+const assemblyRoute = (route, parentRoute) => {
+    let reRoute = {}
+    if (route.menuType === "menu") {
+        reRoute = {
+            path: `${parentRoute ? parentRoute.path : ""}/${route.resCode}`,
+            name: route.resCode,
+            meta: {
+                title: route.resName,
+                icon: route.icon
+            },
+            type: "route",
+            subs: [],
+            component: null
+        }
+
+        route.children.forEach(p => {
+            reRoute.subs.push(assemblyRoute(p, reRoute))
+        })
+
+        if (reRoute.subs.length > 0) {
+            reRoute.component = ({render: (e) => e("router-view")})
+        } else if (reRoute.subs.length === 0 && !lodash.isEmpty(route.resUrl)) {
+            reRoute.component = (() => import(`../../views${route.resUrl}`))
+        } else {
+            exceptionUtils.silentError(`${reRoute.name} 的配置组件地址不能为空，请检查数据 ${JSON.stringify(route)}`)
+        }
+
+    } else {
+        reRoute = {
+            name: "home-setting",
+            meta: {
+                title: route.resName,
+                icon: route.icon
+            },
+            type: "icon",
+        }
+    }
+
+
+    return reRoute;
 }
 
 export default {
@@ -108,8 +151,10 @@ export default {
             }
         },
         SET_ROUTES(state) {
-            const original_resource=lodash.cloneDeep(state.account.resource)
-            console.log(original_resource)
+            const original_resource = lodash.cloneDeep(state.account.resource)
+            original_resource.forEach(fo=>{
+                state.routes.push(assemblyRoute(fo,null))
+            })
         }
     }
 }

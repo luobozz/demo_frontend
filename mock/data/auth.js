@@ -33,7 +33,7 @@ export default {
                         resCode: "account",
                         resName: "账号管理",
                         resOrder: 1,
-                        resUrl: "./views/system/about/about.vue",
+                        resUrl: "/system/about/about.vue",
                         children: []
                     }, {
                         icon: "fa-qq",
@@ -41,7 +41,7 @@ export default {
                         resCode: "role",
                         resName: "角色管理",
                         resOrder: 2,
-                        resUrl: "./views/system/about/about.vue",
+                        resUrl: "/system/about/about.vue",
                         children: []
                     }, {
                         icon: "fa-qq",
@@ -49,10 +49,46 @@ export default {
                         resCode: "route",
                         resName: "路由管理",
                         resOrder: 1,
-                        resUrl: "./views/system/about/about.vue",
+                        resUrl: "/system/about/about.vue",
                         children: []
                     },
                 ]
+            },
+            {
+                icon: "fa-qq",
+                menuType: "menu",
+                resCode: "test",
+                resName: "测试",
+                resOrder: 2,
+                resUrl: "",
+                children: [
+                    {
+                        icon: "fa-qq",
+                        menuType: "menu",
+                        resCode: "test_sub",
+                        resName: "测试子菜单",
+                        resOrder: 1,
+                        resUrl: "/system/about/about.vue",
+                        children: []
+                    },
+                ]
+            },
+            {
+                icon: "fa-qq",
+                menuType: "btn",
+                resCode: "home-setting",
+                resName: "测试主页按钮",
+                resOrder: 1,
+                resUrl: "",
+            },
+            {
+                icon: "fa-qq",
+                menuType: "menu",
+                resCode: "about",
+                resName: "关于",
+                resOrder: 2,
+                resUrl: "/system/about/about.vue",
+                children: []
             }
         ]
     },

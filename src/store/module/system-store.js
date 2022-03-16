@@ -33,6 +33,7 @@ export default {
                     break
                 }
             }
+            document.body.className = `media-${state.media.media}`
         },
         MENU_COLLAPSE(state, defaultMedia) {
             if (defaultMedia) {

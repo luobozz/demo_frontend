@@ -19,8 +19,19 @@ server.all("*", function (req, res, next) {
 })
 
 server.get('/auth/login', (request, response) => { //3
+    response.end(JSON.stringify({
+        test:"success"
+    }));
+});
+
+server.post('/auth/registration', (request, response) => { //3
     response.end('success');
 });
+
+server.get('/auth/account', (request, response) => { //3
+    response.end('success');
+});
+
 
 server.get('/auth/role', (request, response) => { //3
     response.writeHead(500, 'Current password does not match', { 'content-type': 'text/plain' });

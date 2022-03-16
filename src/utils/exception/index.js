@@ -5,9 +5,13 @@ import uiUtils from "@/utils/ui";
  */
 export default {
     silentError: (error, vm, info) => {
-        if (info.indexOf("Promise") > -1) {
-            console.warn(error)
-        } else {
+        if (vm){
+            if (info.indexOf("Promise") > -1) {
+                console.warn(error)
+            } else {
+                console.error(error)
+            }
+        }else {
             console.error(error)
         }
     },

@@ -1,7 +1,8 @@
 <template>
   <div class="content">
     <a-layout>
-      <div :class="{'layout-sider':true,'collapse':layout.menuCollapse}">
+      <div :class="{'layout-sider':true,'collapse':layout.menuCollapse,'no-collapse':!layout.menuCollapse}"
+           @click="siderCilck">
         <layout-menu/>
       </div>
       <a-layout :class="{'collapse':layout.menuCollapse}">
