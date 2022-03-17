@@ -7,21 +7,30 @@ const defaultMedia = {
     media: ""
 }
 
+const defaultTabs = []
+
 export default {
     state: {
         media: defaultMedia,
-        layout: defaultLayout
+        layout: defaultLayout,
+        tabs: []
     },
     actions: {
         responsiveDefault(context) {
             context.commit('RESPONSIVE');
-            context.commit('MENU_COLLAPSE', true);
+            // context.commit('MENU_COLLAPSE', true);
         },
         responsive(context) {
             context.commit('RESPONSIVE');
         },
         menuCollapse(context) {
             context.commit('MENU_COLLAPSE');
+        },
+        addTab(context, route) {
+            context.commit('ADD_TAB', route);
+        },
+        clearTabs(context) {
+            context.commit("CLEAR_TABS")
         }
     },
     mutations: {
@@ -41,6 +50,21 @@ export default {
             } else {
                 state.layout.menuCollapse = !state.layout.menuCollapse
             }
+        },
+        ADD_TAB(state, route) {
+            if (state.tabs.findIndex(p => p.path === route.path) === -1) {
+                state.tabs.push({
+                    name: route.name,
+                    path: route.path,
+                    meta: {
+                        ...route.meta,
+                        locked:route.name==="index"
+                    },
+                })
+            }
+        },
+        CLEAR_TABS(state) {
+            state.tabs = []
         }
     }
 }

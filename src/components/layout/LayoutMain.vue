@@ -37,6 +37,7 @@ export default {
       width: 100% !important;
       left: 0 !important;
       min-width: @media-min-width-mobile !important;
+      height: @head-height-mobile;
     }
 
     .layout-main-body {

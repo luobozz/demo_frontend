@@ -6,8 +6,10 @@
 @main-width: calc(100% - @menu-width);
 @main-collapse-width: calc(100% - @menu-collapse-width);
 @head-top-height: 55px;
-@head-carousel-height: 40px;
-@head-height: @head-top-height+@head-carousel-height;
+@head-carousel-height: 0px;
+@head-tabs-height: 40px;
+@head-height: @head-top-height+@head-carousel-height+@head-tabs-height;
+@head-height-mobile: @head-top-height + @head-carousel-height;
 @foot-height: 40px;
 @body-height: calc(100% - @foot-height);
 

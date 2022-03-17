@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import getters from './getters'
-import systemStore from './module/system-store.js'
+import layoutStore from './module/layout-store.js'
 import accountStore from './module/account-store.js'
 import persistedState from 'vuex-persistedstate'
 
@@ -9,7 +9,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   modules: {
-    systemStore,
+    layoutStore,
     accountStore
   },
   plugins: [
@@ -23,8 +23,9 @@ export default new Vuex.Store({
       storage: localStorage,
       reducer(val) {
         return {
-          systemStore: {
-            layout:val.systemStore.layout
+          layoutStore: {
+            layout:val.layoutStore.layout,
+            tabs:val.layoutStore.tabs,
           },
           accountStore: {
             account: val.accountStore.account,

@@ -50,9 +50,22 @@
       </div>
     </div>
 
-    <div class="head-carousel flex al-ct pd-r-md pd-l-md  text-color-sub">
-      <lb-icon class="mg-r-sm" type="svg-icon-cl"></lb-icon>
-      通知
+    <!--    <div class="head-carousel flex al-ct pd-r-md pd-l-md  text-color-sub">-->
+    <!--      <lb-icon class="mg-r-sm" type="svg-icon-cl"></lb-icon>-->
+    <!--      通知: 下午好！-->
+    <!--    </div>-->
+
+    <div class="head-tabs flex al-fe pd-l-md" v-show="isSuitMedia('pc')">
+      <div :class="['tab flex al-ct',tab.path===$route.path?'active':'']" v-for="(tab,i) in tabs"
+           :key="`tab_${tab.name}_${i}`">
+        <lb-icon class="tab-icon mg-r-sm" :type="tab.meta.icon"/>
+        <div class="tab-name">
+          {{ tab.name }}
+        </div>
+        <div v-if="!tab.meta.locked" class="mg-l-sm close-btn">
+          <lb-icon class="text-color-sub" type="fa-close"/>
+        </div>
+      </div>
     </div>
 
   </div>
@@ -65,11 +78,19 @@ import {mapActions} from "vuex";
 export default {
   name: "LayoutMainHead",
   mixins: [layoutMixin],
+  data() {
+    return {}
+  },
+  computed: {},
   methods: {
-    ...mapActions(["logout"]),
-    logoutHandle(){
+    ...mapActions(["logout", "clearTabs"]),
+    logoutHandle() {
       this.logout()
+      this.clearTabs()
     }
+  },
+  created() {
+
   }
 }
 </script>
@@ -106,7 +127,8 @@ export default {
       .account-info {
         cursor: pointer;
         height: 100%;
-        .name{
+
+        .name {
           font-size: 115%;
         }
       }
@@ -120,6 +142,121 @@ export default {
     .lb-icon {
       font-size: 110% !important;
     }
+  }
+
+  & > .head-tabs {
+    position: relative;
+    height: @head-tabs-height;
+
+    @tab-radius:10px;
+    .tab {
+      height: 80%;
+      padding: 0 @padding-md;
+      border-radius: @tab-radius @tab-radius 0 0;
+      cursor: pointer;
+      position: relative;
+      transition: all 0.1s ease-in-out 0s;
+
+      .tab-icon {
+        font-size: 90%;
+      }
+
+      .tab-name {
+        margin-bottom: 3px;
+      }
+
+      .close-btn {
+        border-radius: 50%;
+        width: 14px;
+        height: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 10px;
+        transition: .5s;
+
+        .lb-icon {
+          //margin-top: 1px;
+        }
+      }
+
+      .close-btn:hover {
+        background-color: shade(@background-color-head-btn-hover, 20%);
+
+        .lb-icon {
+          color: @background-color-head-btn-hover !important;
+        }
+      }
+    }
+
+    .tab:hover {
+      background-color: @background-color-head-btn-hover;
+    }
+
+    .tab.active {
+      background-color: @primary-color-select-bg;
+      color: @primary-color;
+
+      .close-btn {
+        .lb-icon {
+          color: @primary-color !important;
+        }
+      }
+
+      .close-btn:hover {
+        background-color: @primary-color !important;
+
+        .lb-icon {
+          color: @primary-color-select-bg !important;
+        }
+      }
+    }
+
+    .tab:not(:first-child)::after {
+      position: absolute;
+      content: "";
+      left: 0;
+      height: 50%;
+      width: 1px;
+      background-color: @text-color-secondary;
+    }
+
+    @outside-fillet-wh: 10px;
+
+    .tab.active::after {
+      position: absolute;
+      content: "";
+      width: @outside-fillet-wh;
+      height: @outside-fillet-wh;
+      right: -@outside-fillet-wh;
+      left:auto;
+      bottom: 0;
+      background-color: initial;
+      border-bottom-left-radius: @tab-radius;
+      box-shadow: @tab-radius @tab-radius 0 @tab-radius @primary-color-select-bg;
+      overflow: hidden;
+    }
+
+    .tab.active::before {
+      position: absolute;
+      content: "";
+      width: @outside-fillet-wh;
+      height: @outside-fillet-wh;
+      left: -@outside-fillet-wh;
+      right:auto;
+      bottom: 0;
+      background-color: initial;
+      border-bottom-right-radius: @tab-radius;
+    }
+
+    .tab:hover::after {
+      width: 0 !important;
+    }
+
+    .tab.active + .tab::after, .tab:hover + .tab::after {
+      width: 0 !important;
+    }
+
   }
 
   & > * {

@@ -64,6 +64,7 @@ router.beforeEach((to, from, next) => {
             console.log("ls", router.getRoutes())
             next({name: homeName})
         } else if (constantRouterName.indexOf(to.name) > -1) {
+            routerUtil.tabStack(to)
             next()
         } else {
             if (!router.isAsyncRoute) {
@@ -75,6 +76,9 @@ router.beforeEach((to, from, next) => {
                     next({path: '/500', query: {pattern: "logout"}})
                 })
             } else {
+                if (to.name !== routerUtil.homeName) {
+                    routerUtil.tabStack(to)
+                }
                 next()
             }
         }

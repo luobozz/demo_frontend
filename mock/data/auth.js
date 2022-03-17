@@ -20,7 +20,16 @@ export default {
         },
         resource: [
             {
-                icon: "fa-qq",
+                icon: "fa-home",
+                menuType: "menu",
+                resCode: "index",
+                resName: "首页",
+                resOrder: 0,
+                resUrl: "/system/about/about.vue",
+                children: []
+            },
+            {
+                icon: "fa-microchip",
                 menuType: "menu",
                 resCode: "system",
                 resName: "系统管理",
@@ -28,7 +37,7 @@ export default {
                 resUrl: "",
                 children: [
                     {
-                        icon: "fa-qq",
+                        icon: "fa-user-circle",
                         menuType: "menu",
                         resCode: "account",
                         resName: "账号管理",
@@ -36,7 +45,7 @@ export default {
                         resUrl: "/system/about/about.vue",
                         children: []
                     }, {
-                        icon: "fa-qq",
+                        icon: "fa-group",
                         menuType: "menu",
                         resCode: "role",
                         resName: "角色管理",
@@ -44,7 +53,7 @@ export default {
                         resUrl: "/system/about/about.vue",
                         children: []
                     }, {
-                        icon: "fa-qq",
+                        icon: "fa-map",
                         menuType: "menu",
                         resCode: "route",
                         resName: "路由管理",
@@ -55,7 +64,7 @@ export default {
                 ]
             },
             {
-                icon: "fa-qq",
+                icon: "fa-user-circle",
                 menuType: "menu",
                 resCode: "test",
                 resName: "测试",
@@ -74,7 +83,7 @@ export default {
                 ]
             },
             {
-                icon: "fa-qq",
+                icon: "fa-paper-plane",
                 menuType: "btn",
                 resCode: "home-setting",
                 resName: "测试主页按钮",
@@ -82,7 +91,7 @@ export default {
                 resUrl: "",
             },
             {
-                icon: "fa-qq",
+                icon: "fa-bookmark",
                 menuType: "menu",
                 resCode: "about",
                 resName: "关于",

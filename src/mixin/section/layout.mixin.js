@@ -11,7 +11,8 @@ const mixin = {
     },
     computed: {
         ...mapState({
-            layout: state => state.systemStore.layout,
+            layout: state => state.layoutStore.layout,
+            tabs: state => state.layoutStore.tabs,
         }),
     },
     methods: {

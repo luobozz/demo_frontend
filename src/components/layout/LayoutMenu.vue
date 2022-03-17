@@ -106,7 +106,7 @@ export default {
       // console.log(this.menu[0])
       let firstMenu = this.routes.filter(fi => fi.type === 'route')[0];
 
-      let isSub = firstMenu.children.length > 0;
+      let isSub = (firstMenu.children||[]).length > 0;
       let path = firstMenu.path
       //判断是登录吗(当前路由不是home或者session获取不到)
       if ($route.name == "home" || routeMenus == []) {

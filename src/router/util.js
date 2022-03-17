@@ -36,4 +36,7 @@ export default {
             })
         });
     },
+    tabStack(route){
+        store.dispatch("addTab",route)
+    }
 }

@@ -1,4 +1,5 @@
 import {mapState} from "vuex";
+import layoutStore from "@/store/module/layout-store";
 
 const mixin = {
     data() {
@@ -10,7 +11,7 @@ const mixin = {
     },
     computed: {
         ...mapState({
-            media: state => state.systemStore.media.media,
+            media: state => state.layoutStore.media.media,
         }),
     },
     methods: {
