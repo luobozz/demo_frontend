@@ -1,7 +1,7 @@
 <template>
-  <div :class="{'layout-main scroll':true,'collapse':layout.menuCollapse}">
+  <div ref="scrollBody" :class="{'layout-main scroll':true,'collapse':layout.menuCollapse}">
     <layout-main-head></layout-main-head>
-    <layout-main-body></layout-main-body>
+    <layout-main-body :class="[slideOut&&'slide-out']"></layout-main-body>
     <layout-main-foot></layout-main-foot>
   </div>
 </template>
@@ -14,11 +14,25 @@ import layoutMixin from "@/mixin/section/layout.mixin";
 
 export default {
   name: "LayoutMain",
+  data() {
+    return {
+      slideOut: true
+    }
+  },
   mixins: [layoutMixin],
   components: {
     "layout-main-head": LayoutMainHead,
     "layout-main-body": LayoutMainBody,
     "layout-main-foot": LayoutMainFoot
+  },
+  watch: {
+    $route() {
+      this.$refs["scrollBody"].scrollTo(0, 0);
+      this.slideOut = false;
+      setTimeout(() => {
+        this.slideOut = true
+      }, 50)
+    }
   }
 }
 </script>
@@ -28,6 +42,9 @@ export default {
 .media-mobile {
 
   .layout-main {
+    height: calc(100% - @head-height-mobile);
+    margin-top: @head-height-mobile;
+
     & > * {
       width: 100%;
       min-width: @media-min-width-mobile !important;
@@ -76,10 +93,44 @@ export default {
     z-index: 2;
   }
 
+  @slide-width: 50px;
+  @fade-start: 0;
+  @animation-times:.3s;
+
   .layout-main-body {
     padding-top: @head-height;
     min-height: @body-height;
     padding: @padding-md;
+    margin-left: -@slide-width;
+    opacity: @fade-start;
+  }
+
+  .layout-main-body.slide-out {
+    animation-timing-function: ease-in-out;
+    animation: ani-main-body @animation-times;
+    -webkit-animation: ani-main-body @animation-times;
+    animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
+  }
+
+  @keyframes ani-main-body {
+    from {
+      opacity: @fade-start;
+      margin-left: -@slide-width;
+    }
+    to {
+      margin-left: 0;
+      opacity: 1;
+    }
+  }
+
+  @keyframes layout-main-body-fade-out {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
   }
 
   .layout-main-foot {

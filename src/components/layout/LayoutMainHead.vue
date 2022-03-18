@@ -55,15 +55,21 @@
     <!--      通知: 下午好！-->
     <!--    </div>-->
 
-    <div class="head-tabs flex al-fe pd-l-md" v-show="isSuitMedia('pc')">
+    <div class="head-tabs flex al-fe pd-l-md no-shrink scroll x hide" v-show="isSuitMedia('pc')">
       <div :class="['tab flex al-ct',tab.path===$route.path?'active':'']" v-for="(tab,i) in tabs"
-           :key="`tab_${tab.name}_${i}`">
+           :key="`tab_${tab.name}_${i}`" @click="activeTabHandle($event,tab)">
         <lb-icon class="tab-icon mg-r-sm" :type="tab.meta.icon"/>
         <div class="tab-name">
-          {{ tab.name }}
+          {{ tab.meta.title }}
         </div>
-        <div v-if="!tab.meta.locked" class="mg-l-sm close-btn">
+        <div v-if="!tab.meta.locked" class="mg-l-sm close-btn" @click="closeTabHandle($event,tab)">
           <lb-icon class="text-color-sub" type="fa-close"/>
+        </div>
+        <div class="active-decoration left">
+          <div class="fillet"></div>
+        </div>
+        <div class="active-decoration right">
+          <div class="fillet"></div>
         </div>
       </div>
     </div>
@@ -83,10 +89,17 @@ export default {
   },
   computed: {},
   methods: {
-    ...mapActions(["logout", "clearTabs"]),
+    ...mapActions(["logout", "clearTabs", "removeTab"]),
     logoutHandle() {
       this.logout()
       this.clearTabs()
+    },
+    activeTabHandle(e, tab) {
+      this.$router.push({path: tab.path})
+    },
+    closeTabHandle(e, tab) {
+      e.stopPropagation()
+      this.removeTab({tab: tab, currentPath: this.$route.path})
     }
   },
   created() {
@@ -148,14 +161,16 @@ export default {
     position: relative;
     height: @head-tabs-height;
 
-    @tab-radius:10px;
+    @tab-radius: 10px;
+    @outside-fillet-wh: 10px;
+
     .tab {
       height: 80%;
       padding: 0 @padding-md;
-      border-radius: @tab-radius @tab-radius 0 0;
+      border-radius: @tab-radius;
       cursor: pointer;
       position: relative;
-      transition: all 0.1s ease-in-out 0s;
+      z-index: 1;
 
       .tab-icon {
         font-size: 90%;
@@ -167,7 +182,7 @@ export default {
 
       .close-btn {
         border-radius: 50%;
-        width: 14px;
+        width: 15px;
         height: 14px;
         display: flex;
         align-items: center;
@@ -187,15 +202,65 @@ export default {
           color: @background-color-head-btn-hover !important;
         }
       }
+
+      .active-decoration {
+        position: absolute;
+        width: @outside-fillet-wh*2;
+        height: @outside-fillet-wh;
+        background-color: initial;
+        bottom: 0;
+        overflow: hidden;
+        display: flex;
+
+        .fillet {
+          width: @outside-fillet-wh;
+          height: @outside-fillet-wh;
+        }
+      }
+
+      .active-decoration.left {
+        left: -@outside-fillet-wh;
+        right: auto;
+
+        .fillet {
+          border-bottom-right-radius: @tab-radius;
+          box-shadow: @tab-radius @tab-radius 0 @tab-radius initial;
+        }
+      }
+
+      .active-decoration.right {
+        right: -@outside-fillet-wh;
+        left: auto;
+        justify-content: flex-end;
+
+        .fillet {
+          border-bottom-left-radius: @tab-radius;
+          box-shadow: -@tab-radius @tab-radius 0 @tab-radius initial;
+        }
+      }
     }
 
     .tab:hover {
       background-color: @background-color-head-btn-hover;
+
+      .active-decoration.left {
+        .fillet {
+          box-shadow: @tab-radius @tab-radius 0 @tab-radius @background-color-head-btn-hover;
+        }
+      }
+
+      .active-decoration.right {
+        .fillet {
+          box-shadow: -@tab-radius @tab-radius 0 @tab-radius @background-color-head-btn-hover;
+        }
+      }
+
     }
 
     .tab.active {
       background-color: @primary-color-select-bg;
       color: @primary-color;
+      z-index: 2;
 
       .close-btn {
         .lb-icon {
@@ -210,6 +275,19 @@ export default {
           color: @primary-color-select-bg !important;
         }
       }
+
+      .active-decoration.left {
+        .fillet {
+          box-shadow: @tab-radius @tab-radius 0 @tab-radius @primary-color-select-bg;
+        }
+      }
+
+      .active-decoration.right {
+        .fillet {
+          box-shadow: -@tab-radius @tab-radius 0 @tab-radius @primary-color-select-bg;
+        }
+      }
+
     }
 
     .tab:not(:first-child)::after {
@@ -221,35 +299,34 @@ export default {
       background-color: @text-color-secondary;
     }
 
-    @outside-fillet-wh: 10px;
 
-    .tab.active::after {
-      position: absolute;
-      content: "";
-      width: @outside-fillet-wh;
-      height: @outside-fillet-wh;
-      right: -@outside-fillet-wh;
-      left:auto;
-      bottom: 0;
-      background-color: initial;
-      border-bottom-left-radius: @tab-radius;
-      box-shadow: @tab-radius @tab-radius 0 @tab-radius @primary-color-select-bg;
-      overflow: hidden;
-    }
+    //.tab.active::after {
+    //  position: absolute;
+    //  content: "";
+    //  width: @outside-fillet-wh;
+    //  height: @outside-fillet-wh;
+    //  right: -@outside-fillet-wh;
+    //  left: auto;
+    //  bottom: 0;
+    //  background-color: initial;
+    //  border-bottom-left-radius: @tab-radius;
+    //  box-shadow: @tab-radius @tab-radius 0 @tab-radius @primary-color-select-bg;
+    //  overflow: hidden;
+    //}
+    //
+    //.tab.active::before {
+    //  position: absolute;
+    //  content: "";
+    //  width: @outside-fillet-wh;
+    //  height: @outside-fillet-wh;
+    //  left: -@outside-fillet-wh;
+    //  right: auto;
+    //  bottom: 0;
+    //  background-color: initial;
+    //  border-bottom-right-radius: @tab-radius;
+    //}
 
-    .tab.active::before {
-      position: absolute;
-      content: "";
-      width: @outside-fillet-wh;
-      height: @outside-fillet-wh;
-      left: -@outside-fillet-wh;
-      right:auto;
-      bottom: 0;
-      background-color: initial;
-      border-bottom-right-radius: @tab-radius;
-    }
-
-    .tab:hover::after {
+    .tab.active::after, .tab:hover::after {
       width: 0 !important;
     }
 

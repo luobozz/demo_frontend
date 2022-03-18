@@ -6,7 +6,13 @@
 
 <script>
 export default {
-  name: "LayoutMainBody"
+  name: "LayoutMainBody",
+  created() {
+    // console.log(1)
+  },
+  mounted() {
+    // console.log(2)
+  }
 }
 </script>
 
