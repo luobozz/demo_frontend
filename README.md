@@ -11,14 +11,18 @@
 
 <br/>
 
+## 项目提交
+项目使用 [commitizen](https://github.com/commitizen-tools/commitizen) 提交
+`npm run git:acp`
+
 ## less computed test
 `.\node_modules\.bin\lessc .\src\assets\css\computed\index.less .\src\assets\css\computed\test.css
 `
 ## TODO LIST
-- [ ] 初始化项目
+- [x] 初始化项目
 - [x] 添加CZ
-- [ ] 响应式处理
-- [ ] 标签页
+- [x] 响应式处理
+- [x] 标签页
 
 ## 参考&感谢
 [soybean-admin](https://github.com/honghuangdc/soybean-admin)
