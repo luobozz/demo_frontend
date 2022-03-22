@@ -84,19 +84,13 @@ export default {
                 role
             } = api.main.auth
             return new Promise((resolve, reject) => {
-                Promise.all([
-                    login({}, {noToast: {all: true}}),
-                    profileResource({}, {noToast: {all: true}}),
-                    role({}, {noToast: {all: true}})
-                ]).then(r => {
-                    // console.log(r[0].data, r[1].data, r[2].data)
+                login(data, {noToast: {all: true}}).then(r => {
                     const account = {
-
-                        ...r[1].data.profile,
-                        token: r[0].data.token,
-                        roleType: r[2].data.map(p => p.roleType),
-                        roleName: r[2].data.map(p => p.roleName),
-                        resource: r[1].data.resource,
+                        ...r.data.profile,
+                        token: r.data.token,
+                        roleType: r.data.role.map(p => p.roleType),
+                        roleName: r.data.role.map(p => p.roleName),
+                        resource: r.data.resource,
                     }
                     context.commit('LOGIN')
                     context.commit('SET_ACCOUNT', account);
