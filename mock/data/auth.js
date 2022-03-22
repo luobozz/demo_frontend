@@ -24,7 +24,7 @@ export default {
                 menuType: "menu",
                 resCode: "index",
                 resName: "首页",
-                resOrder: 0,
+                resOrder: 1,
                 resUrl: "/system/about/about.vue",
                 children: []
             },

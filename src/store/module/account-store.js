@@ -35,7 +35,7 @@ const assemblyRoute = (route, parentRoute) => {
             name: route.resCode,
             meta: {
                 title: route.resName,
-                icon: route.icon
+                icon: route.icon,
             },
             type: "route",
             subs: [],
@@ -152,7 +152,9 @@ export default {
         },
         SET_ROUTES(state) {
             const original_resource = lodash.cloneDeep(state.account.resource)
-            original_resource.forEach(fo=>{
+            original_resource.sort((a,b)=>{
+                return a.resOrder-b.resOrder
+            }).forEach(fo=>{
                 state.routes.push(assemblyRoute(fo,null))
             })
         }
