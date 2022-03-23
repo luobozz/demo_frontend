@@ -3,7 +3,7 @@ import {builder} from '../util/builder'
 import data from "../data/auth"
 
 Mock.mock(/\/auth\/login/, (res) => {
-    return builder(data.login)
+    return builder(data.login[0])
 });
 
 Mock.mock(/\/auth\/logout/, (res) => {
