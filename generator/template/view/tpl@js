@@ -1,0 +1,14 @@
+import ${$name} from "@/model/${$name}"
+
+const methods = {
+    init() {
+        this.initCurd({
+            list: this.$httpApi.main.auth.get${apiName},
+            add: this.$httpApi.main.auth.add${apiName},
+            edit: this.$httpApi.main.auth.edit${apiName},
+            delete: this.$httpApi.main.auth.del${apiName},
+        }, "${chineseName}", ${$name}, {}, {})
+    }
+}
+
+export default methods

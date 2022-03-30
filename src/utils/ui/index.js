@@ -1,7 +1,9 @@
 import message from "ant-design-vue/lib/message";
+import {Modal} from 'ant-design-vue'
 
 import(`ant-design-vue/lib/message/style`)
 import {throttler} from "@/utils/data/throttler"
+import dataUtil from "@/utils/data/index"
 
 
 const _this = {
@@ -35,7 +37,20 @@ const _this = {
             btn: opt.btn || null,
         }
         Notification(optC)
-    }
+    },
+    confirm(opt) {
+        let optC = {
+            content:"警告",
+            okText: "确认",
+            cancelText: "取消",
+            keyboard:true,
+            centered:true,
+            onOk:()=>{},
+            onCancel:()=>{},
+        }
+        dataUtil.object.Merger(optC, opt)
+        Modal.confirm(optC);
+    },
 }
 
 export default _this

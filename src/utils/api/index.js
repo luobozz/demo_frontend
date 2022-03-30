@@ -48,7 +48,7 @@ export default {
                 200: () => {
                     //状态码 200 succeed:false 业务异常，直接输出msg
                     //状态码 200 succeed:true 成功，直接输出msg
-                    return afterHandle(resData.succeed || false, true, resData.msg || resData.succeed ? "" : "业务异常")
+                    return afterHandle(resData.succeed || false, true, resData.msg || resData.succeed ? "操作成功" : "业务异常")
                 },
                 400: () => {
                     //状态码 400 参数解析异常 可以直接输出msg

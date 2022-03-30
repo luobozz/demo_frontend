@@ -1,9 +1,12 @@
 import {mapState} from "vuex";
 import layoutStore from "@/store/module/layout-store";
+import curd from "@/utils/crud/index"
 
 const mixin = {
     data() {
-        return {}
+        return {
+            ...curd.data
+        }
     },
     mounted() {
     },
@@ -12,9 +15,12 @@ const mixin = {
     computed: {
         ...mapState({
             media: state => state.layoutStore.media.media,
+            accountStore:state => state.accountStore.account
         }),
+        ...curd.computed
     },
     methods: {
+        ...curd.method,
         isSuitMedia(arr){
             return typeof arr==="string"?arr===this.media:arr.indexOf(this.media)>-1
         }
