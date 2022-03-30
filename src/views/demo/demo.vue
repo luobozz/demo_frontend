@@ -46,10 +46,10 @@
 </template>
 
 <script>
-import methods from "./$@{name}.js";
+import methods from "./demo.js";
 
 export default {
-  name: "$@{name}",
+  name: "demo",
   data() {
     return {
       columns: [
@@ -76,5 +76,5 @@ export default {
 </script>
 
 <style lang="less" scoped>
-@import "./$@{name}";
+@import "./demo";
 </style>

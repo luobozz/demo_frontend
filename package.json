@@ -9,7 +9,8 @@
     "fix-memory-limit": "cross-env LIMIT=4096 increase-memory-limit",
     "tservice": "node ./mock/testService.js",
     "git:commit": "cz",
-    "git:acp": "git add . && cz && git push"
+    "git:acp": "git add . && cz && git push",
+    "generator": "node ./generator/generator.js"
   },
   "dependencies": {
     "ant-design-vue": "^1.7.8",
