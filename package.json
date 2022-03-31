@@ -10,7 +10,8 @@
     "tservice": "node ./mock/testService.js",
     "git:commit": "cz",
     "git:acp": "git add . && cz && git push",
-    "generator": "node ./generator/generator.js"
+    "generator": "node ./generator/generator.js",
+    "generator-f": "node ./generator/generator.js -f"
   },
   "dependencies": {
     "ant-design-vue": "^1.7.8",
@@ -19,12 +20,12 @@
     "lodash": "^4.17.21",
     "mockjs": "^1.1.0",
     "moment": "^2.29.1",
+    "nprogress": "^0.2.0",
     "qs": "^6.10.3",
     "vue": "^2.6.11",
     "vue-router": "^3.2.0",
     "vuex": "^3.4.0",
-    "vuex-persistedstate": "^4.1.0",
-    "nprogress": "^0.2.0"
+    "vuex-persistedstate": "^4.1.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.13",
@@ -46,7 +47,8 @@
     "less": "^3.0.4",
     "less-loader": "^5.0.0",
     "style-resources-loader": "^1.3.3",
-    "vue-template-compiler": "^2.6.11"
+    "vue-template-compiler": "^2.6.11",
+    "minimist": "^1.2.6"
   },
   "config": {
     "commitizen": {

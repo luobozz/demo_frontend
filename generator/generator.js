@@ -4,6 +4,8 @@
  * 2. model文件(空的)
  * 3. api的代码(手动粘贴)(包含mock部分
  */
+//获取控制台参数
+const ARG_V = getArgv()
 const fs = require("fs")
 const path = require("path")
 const lodash = require("lodash")
@@ -11,6 +13,14 @@ const generatorConfig = require("./generator.config")
 generatorConfig.generatorList.forEach(fo => {
     initComponent(fo)
 })
+
+function getArgv() {
+    let argv = {
+        f: false
+    }
+    Object.assign(argv, require('minimist')(process.argv.slice(2)))
+    return argv
+}
 
 function initComponent(component) {
     processComponent(component)
@@ -34,7 +44,7 @@ function initViewFiles(component) {
 
 //生成2
 function initModelFiles(component) {
-    touchFile(`${realPath("/model")}/${component.name}.js`,"export default {}")
+    touchFile(`${realPath("/model")}/${component.name}.js`, "export default {}")
 }
 
 //生成3
@@ -55,12 +65,12 @@ function processComponent(component) {
     let apiName = (component.restUrl || "") + ""
 
     //生成带转义符的restUrl
-    component.restUrlEscapes=replaceAll("/","\\/",component.restUrl)
+    component.restUrlEscapes = replaceAll("/", "\\/", component.restUrl)
     //过滤掉apiRoot部分生成apiName
     for (let i = 0; i < generatorConfig.apiRoots.length; i++) {
         const fo = generatorConfig.apiRoots[i]
         if (apiName.indexOf(fo) > -1) {
-            component.apiNameLowerCase=lodash.camelCase(apiName.slice(fo.length, apiName.length))
+            component.apiNameLowerCase = lodash.camelCase(apiName.slice(fo.length, apiName.length))
             component.apiName = lodash.upperFirst(component.apiNameLowerCase)
             component.apiParentPath = `/api/main${fo}`
             break;
@@ -79,9 +89,11 @@ function realPath(path) {
 }
 
 function touchFile(to, content) {
-    if(fs.existsSync(to)){
-        console.warn(`${to} 已经存在了`)
-        return
+    if (fs.existsSync(to)) {
+        console.warn(`${to} 已经存在了 ${ARG_V.f?'被新的内容覆盖':''}`)
+        if (!ARG_V.f) {
+            return
+        }
     }
     const makeDirs = pt => {
         if (fs.existsSync(pt)) {
@@ -93,7 +105,7 @@ function touchFile(to, content) {
         }
     };
     makeDirs(path.dirname(to) + '/')
-    fs.writeFileSync(to,content,"utf8")
+    fs.writeFileSync(to, content, "utf8")
 }
 
 
