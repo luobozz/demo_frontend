@@ -1,0 +1,33 @@
+
+---------------------API----------------------
+
+get$@{apiName}(data, custom) {
+    return axios.get(`${httpConfig.url.apiUrl}$@{restUrl}`, {}, data, custom)
+},
+add$@{apiName}(data, custom) {
+    return axios.post(`${httpConfig.url.apiUrl}$@{restUrl}`, {}, data, custom)
+},
+edit$@{apiName}(data, custom) {
+    return axios.put(`${httpConfig.url.apiUrl}$@{restUrl}`, {}, data, custom)
+},
+del$@{apiName}(data, custom) {
+    return axios.delete(`${httpConfig.url.apiUrl}$@{restUrl}`, {}, data, custom)
+},
+
+---------------------MOCK----------------------
+
+Mock.mock(/$@{restUrlEscapes}/, (res) => {
+    return builder(data.$@{apiNameLowerCase})
+});
+
+Mock.mock(/$@{restUrlEscapes}/, (res) => {
+    return builder(data.$@{apiNameLowerCase})
+});
+
+Mock.mock(/$@{restUrlEscapes}/, (res) => {
+    return builder(data.$@{apiNameLowerCase})
+});
+
+Mock.mock(/$@{restUrlEscapes}/, (res) => {
+    return builder(data.$@{apiNameLowerCase})
+});

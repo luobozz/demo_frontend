@@ -2,7 +2,7 @@
  * 生成模板代码
  * 1. view的js\css\vue文件
  * 2. model文件(空的)
- * 3. api的代码(手动粘贴)
+ * 3. api的代码(手动粘贴)(包含mock部分
  */
 const fs = require("fs")
 const path = require("path")
@@ -22,24 +22,26 @@ function initComponent(component) {
 //生成1
 function initViewFiles(component) {
     let vueTpl = fs.readFileSync('./generator/template/view/tpl@vue', 'utf8');
-    let jsTps = fs.readFileSync('./generator/template/view/tpl@js', 'utf8');
+    let jsTpl = fs.readFileSync('./generator/template/view/tpl@js', 'utf8');
     vueTpl = replacement(vueTpl, component)
-    jsTps = replacement(jsTps, component)
+    jsTpl = replacement(jsTpl, component)
     // console.log(jsTps)
     const viewPath = `${realPath(component.viewParentPath)}${component.name}`
     touchFile(`${viewPath}/${component.name}.vue`, vueTpl)
-    touchFile(`${viewPath}/${component.name}.js`, jsTps)
+    touchFile(`${viewPath}/${component.name}.js`, jsTpl)
     touchFile(`${viewPath}/${component.name}.less`, "")
 }
 
 //生成2
 function initModelFiles(component) {
-
+    touchFile(`${realPath("/model")}/${component.name}.js`,"export default {}")
 }
 
 //生成3
 function initApiFiles(component) {
-
+    let apiTpl = fs.readFileSync('./generator/template/api/api@js', 'utf8');
+    apiTpl = replacement(apiTpl, component)
+    console.log(apiTpl)
 }
 
 function replacement(str, component) {
@@ -51,10 +53,15 @@ function replacement(str, component) {
 
 function processComponent(component) {
     let apiName = (component.restUrl || "") + ""
+
+    //生成带转义符的restUrl
+    component.restUrlEscapes=replaceAll("/","\\/",component.restUrl)
+    //过滤掉apiRoot部分生成apiName
     for (let i = 0; i < generatorConfig.apiRoots.length; i++) {
         const fo = generatorConfig.apiRoots[i]
         if (apiName.indexOf(fo) > -1) {
-            component.apiName = lodash.upperFirst(lodash.camelCase(apiName.slice(fo.length, apiName.length)))
+            component.apiNameLowerCase=lodash.camelCase(apiName.slice(fo.length, apiName.length))
+            component.apiName = lodash.upperFirst(component.apiNameLowerCase)
             component.apiParentPath = `/api/main${fo}`
             break;
         }
