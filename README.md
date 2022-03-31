@@ -15,18 +15,20 @@
 
 ## 代码生成
 
+#### 解释
+
 generator生成的代码包括三个部分(*表示模块标识名称即generatorList中配置的`name`字段)
 1. view部分的**三**个文件`*.vue\\*.js\\*.css`
 2. model部分的**一**个文件`*.js`
 3. api部分的**两**块代码`api\mock的get\put\post\delete方法(api不生成文件仅生成粘贴代码)`
 
-### 配置generator.config.js(需要生成的模块名称)
+#### 配置generator.config.js(需要生成的模块名称)
 | 参数  | 说明   | 类型   | 参考内容   |
 |-------------- | -------------- | -------------- | -------------- |
 | apiRoots    | api根目录列表     | Array     | ["/auth"]     |
 | generatorList    | 需生成的模块列表     | Array     | [{"viewPath":"/view/","name":"demo","chineseName":"模板","restUrl":"/auth/sys/orm/role"}]     |
 
-### 生成
+#### 生成
 
 `npm run generator`
 <br/>
