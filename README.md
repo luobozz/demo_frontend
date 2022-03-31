@@ -22,7 +22,7 @@ generator生成的代码包括三个部分(*表示模块标识名称即generator
 2. model部分的**一**个文件`*.js`
 3. api部分的**两**块代码`api\mock的get\put\post\delete方法(api不生成文件仅生成粘贴代码)`
 
-#### 配置generator.config.js(需要生成的模块名称)
+#### 配置generator.config.js
 | 参数  | 说明   | 类型   | 参考内容   |
 |-------------- | -------------- | -------------- | -------------- |
 | apiRoots    | api根目录列表     | Array     | ["/auth"]     |
