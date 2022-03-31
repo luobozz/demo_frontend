@@ -32,8 +32,11 @@ generator生成的代码包括三个部分(*表示模块标识名称即generator
 #### 生成
 
 普通生成
+
 `npm run generator`
+
 覆盖生成
+
 `npm run generator-f`
 <br/>
 <br/>
