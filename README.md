@@ -10,6 +10,8 @@
 </p>
 
 <br/>
+<br/>
+<br/>
 
 ## 代码生成
 
@@ -27,29 +29,34 @@ generator生成的代码包括三个部分(*表示模块标识名称即generator
 ### 生成
 
 `npm run generator`
-
-
-
+<br/>
+<br/>
 ## 项目提交
 
 项目使用 [commitizen](https://github.com/commitizen-tools/commitizen) 提交
-`npm run git:acp`
 
+`npm run git:acp`
+<br/>
+<br/>
 ## less computed test
 
 `.\node_modules\.bin\lessc .\src\assets\css\computed\index.less .\src\assets\css\computed\test.css
 `
+<br/>
+<br/>
 ## TODO LIST
 
 - [x] 初始化项目
 - [x] 添加CZ
 - [x] 响应式处理
 - [x] 标签页
-
+<br/>
+<br/>
 ## 参考&感谢
 
 [soybean-admin](https://github.com/honghuangdc/soybean-admin)
-
+<br/>
+<br/>
 ## License
 
 [MIT Copyright (c) 2022 luobo](https://github.com/luobozz/demo_frontend/blob/main/LICENSE)
