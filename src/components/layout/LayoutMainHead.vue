@@ -62,7 +62,7 @@
         <div class="tab-name">
           {{ tab.meta.title }}
         </div>
-        <div v-if="!tab.meta.locked" class="mg-l-sm close-btn" @click="closeTabHandle($event,tab)">
+        <div v-if="!tab.meta.locked&&tabs.length>1" class="mg-l-sm close-btn" @click="closeTabHandle($event,tab)">
           <lb-icon class="text-color-sub" type="fa-close"/>
         </div>
         <div class="active-decoration left">
